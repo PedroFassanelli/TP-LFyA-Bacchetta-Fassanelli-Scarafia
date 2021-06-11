@@ -73,8 +73,8 @@ t_ignore = ' \t'
 # Construye el lexer
 lexer = lex.lex ()
 
-#Prueba. Devuelve el tipo de token y el valor
 '''
+#Prueba. Devuelve el tipo de token y el valor
 s = 'SELECT c.first_name,
                c.last_name
         FROM customers AS c'
@@ -106,12 +106,13 @@ def p_col(p): #Diccionario columnas
     '''col : ID PUNTO ID AS ID
 	    | ID PUNTO ID
 	    | funcion AS ID'''
-    if len(p) == 4 or len(p) == 6:
+    if p[2] == '.':
         if p[1] in columnas:
             if p[3] not in columnas[p[1]]:
                 columnas[p[1]].append (p[3]) #Guardamos las columnas de cada clave (tabla)
         else:
             columnas[p[1]] = [p[3]] #Agregamos la tabla o el alias como clave
+
 
 def p_funcion(p): #Diccionario columnas
     '''funcion : COUNT L_PARENT ID PUNTO ID R_PARENT
@@ -250,10 +251,9 @@ def p_error(p):
 
 import ply.yacc as yacc
 
-#Analizador de prueba
 '''
+#Analizador de prueba (probamos que los diccionarios funcionen correctamente pasando sentencias por consola)
 parser = yacc.yacc()
-
 while True:
     try:
         s = input('analizador >')
