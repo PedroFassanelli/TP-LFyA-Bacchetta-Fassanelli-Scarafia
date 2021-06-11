@@ -65,7 +65,7 @@ def t_newline (t):
 #Regla de manejo de errores
 def t_error (t): 
      print ("Carácter no valido '% s'"% t.value [0]) 
-     t.lexer.skip (1) 
+     t.lexer.skip (1)
 
 # Ignora los espacios en blanco     
 t_ignore = ' \t'    
@@ -91,20 +91,22 @@ columnas = {}
 
 #Funciones por cada NT de la gramatica
 def p_Consulta(p):
-    '''CONSULTA : SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_'''
+    '''consulta : select from join where group order'''
 
-def p_SELECT_(p):
-    '''SELECT_ : SELECT CAMPO
-        | SELECT DISTINCT CAMPO'''
+def p_select(p):
+    '''select : SELECT campo
+        | SELECT DISTINCT campo'''
 
-def p_CAMPO(p):
-    ''' CAMPO : COL COMA CAMPO
-        | COL'''
+def p_campo(p):
+    '''campo : col COMA campo
+        | col'''
 
-def p_COL(p): #diccionario
-    ''' COL : ID PUNTO ID 
-	    | ID PUNTO ID AS COMILLA ID COMILLA
-	    | FUNCION AS COMILLA ID COMILLA'''
+def p_col(p): #Diccionario
+    '''col : ID PUNTO ID AS ID
+	    | ID PUNTO ID
+	    | funcion AS ID'''
+    
+    """
     indice = p[1]
     if indice in columnas:
         if len(p) == 4 or len(p) == 7:
@@ -113,13 +115,15 @@ def p_COL(p): #diccionario
                 columnas[indice].append(aux)
     elif len(p) == 4 or len(p) == 7:
         columnas[indice] = [p[3]]
-    
+    """
 
-def p_FUNCION (p): #diccionario
-    ''' FUNCION : COUNT L_PARENT ID PUNTO ID R_PARENT
+def p_funcion(p): #Diccionario
+    '''funcion : COUNT L_PARENT ID PUNTO ID R_PARENT
 	    | COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
 	    | MIN L_PARENT ID PUNTO ID R_PARENT
-	    | MAX L_PARENT ID PUNTO ID R_PARENT '''
+	    | MAX L_PARENT ID PUNTO ID R_PARENT'''
+
+    """
     indice = ''
     if len(p) == 7:
         indice = p[3]
@@ -139,46 +143,50 @@ def p_FUNCION (p): #diccionario
             columnas[indice] = [p[5]]
         elif len(p) == 8:
             columnas[indice] = [p[6]]
+    """
 
+def p_from(p):    
+    '''from : FROM tabla'''
 
-def p_FROM_(p):
-    ''' FROM_ : FROM TABLA''' 
+def p_tabla(p):
+    '''tabla : tab
+	    | tab COMA tabla'''
 
-def p_TABLA(p):
-    ''' TABLA : TAB
-	    | TAB COMA TABLA ''' 
-
-def p_TAB(p): #diccionario
-    ''' TAB : ID 
+def p_tab(p): #Diccionario
+    '''tab : ID
+        | ID ID
 	    | ID AS ID'''
-    if len(p) == 2:
+
+    """
+        if len(p) == 2:
         tablas.setdefault(p[1])
+    elif len(p) == 4:
+        tablas[p[1]] = [p[3]]
     else:
-        tablas[p[1]] = [p[3]]      
+        tablas[p[1]] = [p[2]]  
+    """
 
-
-def p_JOIN_(p):
-    ''' JOIN_ : INNER JOIN J 
-	    | LEFT JOIN J
+def p_join(p):
+    '''join : INNER JOIN j
+	    | LEFT JOIN j
 	    | '''
 
+def p_j(p):
+    '''j : tab ON w'''
 
-def p_J(p):
-    '''J : TAB ON W'''
-
-
-def p_WHERE_(p):
-    ''' WHERE_ : WHERE W 
+def p_where(p):
+    '''where : WHERE w 
 	    | '''
 
+def p_w(p): #Diccionario
+    '''w : ID PUNTO ID sim ID PUNTO ID
+	    | ID PUNTO ID sim valor 
+	    | ID PUNTO ID sub 
+	    | w AND w 
+	    | w OR w'''
 
-def p_W(p): #diccionario
-    ''' W : ID PUNTO ID SIM ID PUNTO ID
-	    | ID PUNTO ID SIM VALOR 
-	    | ID PUNTO ID SUB 
-	    | W AND W 
-	    | W OR W ''' 
-    if len (p) == 8:
+    """
+     if len (p) == 8:
         indice1 = p[1]
         indice2 = p[5]
         if indice1 in columnas:
@@ -201,31 +209,33 @@ def p_W(p): #diccionario
                 columnas[indice].append(aux)
         else:
             columnas[indice] = [p[3]]
+    """
 
-
-def p_SIM(p):
-    ''' SIM : IGUAL
+def p_sim(p):
+    '''sim : IGUAL
 	    | MAYOR_IGUAL
 	    | MENOR_IGUAL
 	    | MAYOR
 	    | MENOR
-	    | DIFERENTE '''
+	    | DIFERENTE'''
 
-def p_SUB (p):
-    ''' SUB : IN L_PARENT CONSULTA R_PARENT
-	    | NOT IN L_PARENT CONSULTA R_PARENT '''
+def p_sub(p):
+    '''sub : IN L_PARENT consulta R_PARENT
+	    | NOT IN L_PARENT consulta R_PARENT'''
 
-def p_VALOR (p): 
-    ''' VALOR : COMILLA ID COMILLA 
+def p_valor(p):
+    '''valor : COMILLA ID COMILLA 
 	    | NUMBER'''
 
-def p_GROUP_ (p):
-    ''' GROUP_ : GROUP BY CAMPO_G HAV
-	    | ''' 
+def p_group(p): 
+    '''group : GROUP BY campo_g hav
+	    | '''
 
-def p_CAMPO_G (p): #diccionario
-    ''' CAMPO_G : ID PUNTO ID 
-	    | ID PUNTO ID COMA CAMPO_G '''
+def p_campo_g(p): #Diccionario
+    '''campo_g : ID PUNTO ID 
+	    | ID PUNTO ID COMA campo_g'''
+
+    """
     indice = p[1]
     if indice in columnas:
         aux = p[3]
@@ -233,18 +243,21 @@ def p_CAMPO_G (p): #diccionario
             columnas[indice].append(aux)
     else:
         columnas[indice] = [p[3]]
+    """
 
-def p_HAV(p):
-    ''' HAV : HAVING FUNCION SIM VALOR
+def p_hav(p):
+    '''hav : HAVING funcion sim valor
 	    | '''
 
-def p_ORDER_(p): 
-    ''' ORDER_ : ORDER BY CAMPO_O
+def p_order(p):
+    '''order : ORDER BY campo_o
 	    | '''
 
-def p_CAMPO_O (p): #diccionario
-    ''' CAMPO_O : ID PUNTO ID TIPO_O
-	    | ID PUNTO ID TIPO_O COMA CAMPO_O '''
+def p_campo_o(p): #Diccionario
+    '''campo_o : ID PUNTO ID tipo_o
+	    | ID PUNTO ID tipo_o COMA campo_o'''
+    
+    """
     indice = p[1]
     if indice in columnas:
         aux = p[3]
@@ -252,34 +265,51 @@ def p_CAMPO_O (p): #diccionario
             columnas[indice].append(aux)
     else:
         columnas[indice] = [p[3]]
+    """
 
-def p_TIPO_O (p):
-    ''' TIPO_O : ASC 
-	    | DESC '''
+def p_tipo_o(p):
+    '''tipo_o : ASC 
+	    | DESC'''
+
+def p_error(p):
+    if p:
+        print("Syntax error at '%s'" % p.value)
+    else:
+        print("Syntax error at EOF")
 
 import ply.yacc as yacc
 
-def parse_select_statement(s):
-    #Vaciar valores de los diccionarios
-    columnas.clear()
-    tablas.clear()
-    contador= 0
-    yacc.yacc()
+parser = yacc.yacc()
+ 
+while True:
+    try:
+        s = input('analizador >')
+    except EOFError:
+        break
+    if not s: continue
     yacc.parse(s)
+
    
-    resultado = {}
+#def parse_select_statement(s):
+#    #Vaciar valores de los diccionarios
+#    columnas.clear()
+#    tablas.clear()
+#    contador= 0
+#    yacc.yacc()
+#    yacc.parse(s)
+   
+#    resultado = {}
 
-    for indice_tablas in tablas:
-        control=''
-        if tablas.get(indice_tablas)!=None:
-            control=tablas.get(indice_tablas)
-        else:
-            control=indice_tablas
-        for indice_columnas in columnas:
-            if control==indice_columnas:
-                resultado[indice_tablas]=sorted(columnas.get(indice_columnas))
-                contador+=1
-    if len(columnas.keys())>contador:
-        raise Exception('Error de cadena inválida.')
-    return resultado
-
+#   for indice_tablas in tablas:
+#        control=''
+#        if tablas.get(indice_tablas)!=None:
+#            control=tablas.get(indice_tablas)
+#        else:
+#            control=indice_tablas
+#        for indice_columnas in columnas:
+#            if control==indice_columnas:
+#                resultado[indice_tablas]=sorted(columnas.get(indice_columnas))
+#                contador+=1
+#    if len(columnas.keys())>contador:
+#        raise Exception('Error de cadena inválida.')
+#    return resultado

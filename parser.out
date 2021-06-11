@@ -7,165 +7,166 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> CONSULTA
-Rule 1     CONSULTA -> SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_
-Rule 2     SELECT_ -> SELECT CAMPO
-Rule 3     SELECT_ -> SELECT DISTINCT CAMPO
-Rule 4     CAMPO -> COL COMA CAMPO
-Rule 5     CAMPO -> COL
-Rule 6     COL -> ID PUNTO ID
-Rule 7     COL -> ID PUNTO ID AS COMILLA ID COMILLA
-Rule 8     COL -> FUNCION AS COMILLA ID COMILLA
-Rule 9     FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT
-Rule 10    FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
-Rule 11    FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT
-Rule 12    FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT
-Rule 13    FROM_ -> FROM TABLA
-Rule 14    TABLA -> TAB
-Rule 15    TABLA -> TAB COMA TABLA
-Rule 16    TAB -> ID
-Rule 17    TAB -> ID AS ID
-Rule 18    JOIN_ -> INNER JOIN J
-Rule 19    JOIN_ -> LEFT JOIN J
-Rule 20    JOIN_ -> <empty>
-Rule 21    J -> TAB ON W
-Rule 22    WHERE_ -> WHERE W
-Rule 23    WHERE_ -> <empty>
-Rule 24    W -> ID PUNTO ID SIM ID PUNTO ID
-Rule 25    W -> ID PUNTO ID SIM VALOR
-Rule 26    W -> ID PUNTO ID SUB
-Rule 27    W -> W AND W
-Rule 28    W -> W OR W
-Rule 29    SIM -> IGUAL
-Rule 30    SIM -> MAYOR_IGUAL
-Rule 31    SIM -> MENOR_IGUAL
-Rule 32    SIM -> MAYOR
-Rule 33    SIM -> MENOR
-Rule 34    SIM -> DIFERENTE
-Rule 35    SUB -> IN L_PARENT CONSULTA R_PARENT
-Rule 36    SUB -> NOT IN L_PARENT CONSULTA R_PARENT
-Rule 37    VALOR -> COMILLA ID COMILLA
-Rule 38    VALOR -> NUMBER
-Rule 39    GROUP_ -> GROUP BY CAMPO_G HAV
-Rule 40    GROUP_ -> <empty>
-Rule 41    CAMPO_G -> ID PUNTO ID
-Rule 42    CAMPO_G -> ID PUNTO ID COMA CAMPO_G
-Rule 43    HAV -> HAVING FUNCION SIM VALOR
-Rule 44    HAV -> <empty>
-Rule 45    ORDER_ -> ORDER BY CAMPO_O
-Rule 46    ORDER_ -> <empty>
-Rule 47    CAMPO_O -> ID PUNTO ID TIPO_O
-Rule 48    CAMPO_O -> ID PUNTO ID TIPO_O COMA CAMPO_O
-Rule 49    TIPO_O -> ASC
-Rule 50    TIPO_O -> DESC
+Rule 0     S' -> consulta
+Rule 1     consulta -> select from join where group order
+Rule 2     select -> SELECT campo
+Rule 3     select -> SELECT DISTINCT campo
+Rule 4     campo -> col COMA campo
+Rule 5     campo -> col
+Rule 6     funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT
+Rule 7     funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
+Rule 8     funcion -> MIN L_PARENT ID PUNTO ID R_PARENT
+Rule 9     funcion -> MAX L_PARENT ID PUNTO ID R_PARENT
+Rule 10    from -> FROM tabla
+Rule 11    tabla -> tab
+Rule 12    tabla -> tab COMA tabla
+Rule 13    tab -> ID
+Rule 14    tab -> ID ID
+Rule 15    tab -> ID AS ID
+Rule 16    join -> INNER JOIN j
+Rule 17    join -> LEFT JOIN j
+Rule 18    join -> <empty>
+Rule 19    j -> tab ON w
+Rule 20    where -> WHERE w
+Rule 21    where -> <empty>
+Rule 22    w -> ID PUNTO ID sim ID PUNTO ID
+Rule 23    w -> ID PUNTO ID sim valor
+Rule 24    w -> ID PUNTO ID sub
+Rule 25    w -> w AND w
+Rule 26    w -> w OR w
+Rule 27    sim -> IGUAL
+Rule 28    sim -> MAYOR_IGUAL
+Rule 29    sim -> MENOR_IGUAL
+Rule 30    sim -> MAYOR
+Rule 31    sim -> MENOR
+Rule 32    sim -> DIFERENTE
+Rule 33    sub -> IN L_PARENT consulta R_PARENT
+Rule 34    sub -> NOT IN L_PARENT consulta R_PARENT
+Rule 35    valor -> COMILLA ID COMILLA
+Rule 36    valor -> NUMBER
+Rule 37    group -> GROUP BY campo_g hav
+Rule 38    group -> <empty>
+Rule 39    campo_g -> ID PUNTO ID
+Rule 40    campo_g -> ID PUNTO ID COMA campo_g
+Rule 41    hav -> HAVING funcion sim valor
+Rule 42    hav -> <empty>
+Rule 43    order -> ORDER BY campo_o
+Rule 44    order -> <empty>
+Rule 45    campo_o -> ID PUNTO ID tipo_o
+Rule 46    campo_o -> ID PUNTO ID tipo_o COMA campo_o
+Rule 47    tipo_o -> ASC
+Rule 48    tipo_o -> DESC
+Rule 49    col -> ID PUNTO ID AS ID
+Rule 50    col -> ID PUNTO ID
+Rule 51    col -> funcion AS ID
 
 Terminals, with rules where they appear
 
-AND                  : 27
-AS                   : 7 8 17
-ASC                  : 49
-BY                   : 39 45
-COMA                 : 4 15 42 48
-COMILLA              : 7 7 8 8 37 37
-COUNT                : 9 10
-DESC                 : 50
-DIFERENTE            : 34
-DISTINCT             : 3 10
-FROM                 : 13
-GROUP                : 39
-HAVING               : 43
-ID                   : 6 6 7 7 7 8 9 9 10 10 11 11 12 12 16 17 17 24 24 24 24 25 25 26 26 37 41 41 42 42 47 47 48 48
-IGUAL                : 29
-IN                   : 35 36
-INNER                : 18
-JOIN                 : 18 19
-LEFT                 : 19
+AND                  : 25
+AS                   : 15 49 51
+ASC                  : 47
+BY                   : 37 43
+COMA                 : 4 12 40 46
+COMILLA              : 35 35
+COUNT                : 6 7
+DESC                 : 48
+DIFERENTE            : 32
+DISTINCT             : 3 7
+FROM                 : 10
+GROUP                : 37
+HAVING               : 41
+ID                   : 6 6 7 7 8 8 9 9 13 14 14 15 15 22 22 22 22 23 23 24 24 35 39 39 40 40 45 45 46 46 49 49 49 50 50 51
+IGUAL                : 27
+IN                   : 33 34
+INNER                : 16
+JOIN                 : 16 17
+LEFT                 : 17
 L_CORCH              : 
-L_PARENT             : 9 10 11 12 35 36
-MAX                  : 12
-MAYOR                : 32
-MAYOR_IGUAL          : 30
-MENOR                : 33
-MENOR_IGUAL          : 31
-MIN                  : 11
-NOT                  : 36
-NUMBER               : 38
-ON                   : 21
-OR                   : 28
-ORDER                : 45
-PUNTO                : 6 7 9 10 11 12 24 24 25 26 41 42 47 48
+L_PARENT             : 6 7 8 9 33 34
+MAX                  : 9
+MAYOR                : 30
+MAYOR_IGUAL          : 28
+MENOR                : 31
+MENOR_IGUAL          : 29
+MIN                  : 8
+NOT                  : 34
+NUMBER               : 36
+ON                   : 19
+OR                   : 26
+ORDER                : 43
+PUNTO                : 6 7 8 9 22 22 23 24 39 40 45 46 49 50
 R_CORCH              : 
-R_PARENT             : 9 10 11 12 35 36
+R_PARENT             : 6 7 8 9 33 34
 SELECT               : 2 3
-WHERE                : 22
+WHERE                : 20
 error                : 
 
 Nonterminals, with rules where they appear
 
-CAMPO                : 2 3 4
-CAMPO_G              : 39 42
-CAMPO_O              : 45 48
-COL                  : 4 5
-CONSULTA             : 35 36 0
-FROM_                : 1
-FUNCION              : 8 43
-GROUP_               : 1
-HAV                  : 39
-J                    : 18 19
-JOIN_                : 1
-ORDER_               : 1
-SELECT_              : 1
-SIM                  : 24 25 43
-SUB                  : 26
-TAB                  : 14 15 21
-TABLA                : 13 15
-TIPO_O               : 47 48
-VALOR                : 25 43
-W                    : 21 22 27 27 28 28
-WHERE_               : 1
+campo                : 2 3 4
+campo_g              : 37 40
+campo_o              : 43 46
+col                  : 4 5
+consulta             : 33 34 0
+from                 : 1
+funcion              : 41 51
+group                : 1
+hav                  : 37
+j                    : 16 17
+join                 : 1
+order                : 1
+select               : 1
+sim                  : 22 23 41
+sub                  : 24
+tab                  : 11 12 19
+tabla                : 10 12
+tipo_o               : 45 46
+valor                : 23 41
+w                    : 19 20 25 25 26 26
+where                : 1
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . CONSULTA
-    (1) CONSULTA -> . SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_
-    (2) SELECT_ -> . SELECT CAMPO
-    (3) SELECT_ -> . SELECT DISTINCT CAMPO
+    (0) S' -> . consulta
+    (1) consulta -> . select from join where group order
+    (2) select -> . SELECT campo
+    (3) select -> . SELECT DISTINCT campo
 
     SELECT          shift and go to state 3
 
-    CONSULTA                       shift and go to state 1
-    SELECT_                        shift and go to state 2
+    consulta                       shift and go to state 1
+    select                         shift and go to state 2
 
 state 1
 
-    (0) S' -> CONSULTA .
+    (0) S' -> consulta .
 
 
 
 state 2
 
-    (1) CONSULTA -> SELECT_ . FROM_ JOIN_ WHERE_ GROUP_ ORDER_
-    (13) FROM_ -> . FROM TABLA
+    (1) consulta -> select . from join where group order
+    (10) from -> . FROM tabla
 
     FROM            shift and go to state 5
 
-    FROM_                          shift and go to state 4
+    from                           shift and go to state 4
 
 state 3
 
-    (2) SELECT_ -> SELECT . CAMPO
-    (3) SELECT_ -> SELECT . DISTINCT CAMPO
-    (4) CAMPO -> . COL COMA CAMPO
-    (5) CAMPO -> . COL
-    (6) COL -> . ID PUNTO ID
-    (7) COL -> . ID PUNTO ID AS COMILLA ID COMILLA
-    (8) COL -> . FUNCION AS COMILLA ID COMILLA
-    (9) FUNCION -> . COUNT L_PARENT ID PUNTO ID R_PARENT
-    (10) FUNCION -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
-    (11) FUNCION -> . MIN L_PARENT ID PUNTO ID R_PARENT
-    (12) FUNCION -> . MAX L_PARENT ID PUNTO ID R_PARENT
+    (2) select -> SELECT . campo
+    (3) select -> SELECT . DISTINCT campo
+    (4) campo -> . col COMA campo
+    (5) campo -> . col
+    (49) col -> . ID PUNTO ID AS ID
+    (50) col -> . ID PUNTO ID
+    (51) col -> . funcion AS ID
+    (6) funcion -> . COUNT L_PARENT ID PUNTO ID R_PARENT
+    (7) funcion -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
+    (8) funcion -> . MIN L_PARENT ID PUNTO ID R_PARENT
+    (9) funcion -> . MAX L_PARENT ID PUNTO ID R_PARENT
 
     DISTINCT        shift and go to state 7
     ID              shift and go to state 9
@@ -173,97 +174,98 @@ state 3
     MIN             shift and go to state 12
     MAX             shift and go to state 13
 
-    CAMPO                          shift and go to state 6
-    COL                            shift and go to state 8
-    FUNCION                        shift and go to state 10
+    campo                          shift and go to state 6
+    col                            shift and go to state 8
+    funcion                        shift and go to state 10
 
 state 4
 
-    (1) CONSULTA -> SELECT_ FROM_ . JOIN_ WHERE_ GROUP_ ORDER_
-    (18) JOIN_ -> . INNER JOIN J
-    (19) JOIN_ -> . LEFT JOIN J
-    (20) JOIN_ -> .
+    (1) consulta -> select from . join where group order
+    (16) join -> . INNER JOIN j
+    (17) join -> . LEFT JOIN j
+    (18) join -> .
 
     INNER           shift and go to state 15
     LEFT            shift and go to state 16
-    WHERE           reduce using rule 20 (JOIN_ -> .)
-    GROUP           reduce using rule 20 (JOIN_ -> .)
-    ORDER           reduce using rule 20 (JOIN_ -> .)
-    $end            reduce using rule 20 (JOIN_ -> .)
-    R_PARENT        reduce using rule 20 (JOIN_ -> .)
+    WHERE           reduce using rule 18 (join -> .)
+    GROUP           reduce using rule 18 (join -> .)
+    ORDER           reduce using rule 18 (join -> .)
+    $end            reduce using rule 18 (join -> .)
+    R_PARENT        reduce using rule 18 (join -> .)
 
-    JOIN_                          shift and go to state 14
+    join                           shift and go to state 14
 
 state 5
 
-    (13) FROM_ -> FROM . TABLA
-    (14) TABLA -> . TAB
-    (15) TABLA -> . TAB COMA TABLA
-    (16) TAB -> . ID
-    (17) TAB -> . ID AS ID
+    (10) from -> FROM . tabla
+    (11) tabla -> . tab
+    (12) tabla -> . tab COMA tabla
+    (13) tab -> . ID
+    (14) tab -> . ID ID
+    (15) tab -> . ID AS ID
 
     ID              shift and go to state 19
 
-    TABLA                          shift and go to state 17
-    TAB                            shift and go to state 18
+    tabla                          shift and go to state 17
+    tab                            shift and go to state 18
 
 state 6
 
-    (2) SELECT_ -> SELECT CAMPO .
+    (2) select -> SELECT campo .
 
-    FROM            reduce using rule 2 (SELECT_ -> SELECT CAMPO .)
+    FROM            reduce using rule 2 (select -> SELECT campo .)
 
 
 state 7
 
-    (3) SELECT_ -> SELECT DISTINCT . CAMPO
-    (4) CAMPO -> . COL COMA CAMPO
-    (5) CAMPO -> . COL
-    (6) COL -> . ID PUNTO ID
-    (7) COL -> . ID PUNTO ID AS COMILLA ID COMILLA
-    (8) COL -> . FUNCION AS COMILLA ID COMILLA
-    (9) FUNCION -> . COUNT L_PARENT ID PUNTO ID R_PARENT
-    (10) FUNCION -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
-    (11) FUNCION -> . MIN L_PARENT ID PUNTO ID R_PARENT
-    (12) FUNCION -> . MAX L_PARENT ID PUNTO ID R_PARENT
+    (3) select -> SELECT DISTINCT . campo
+    (4) campo -> . col COMA campo
+    (5) campo -> . col
+    (49) col -> . ID PUNTO ID AS ID
+    (50) col -> . ID PUNTO ID
+    (51) col -> . funcion AS ID
+    (6) funcion -> . COUNT L_PARENT ID PUNTO ID R_PARENT
+    (7) funcion -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
+    (8) funcion -> . MIN L_PARENT ID PUNTO ID R_PARENT
+    (9) funcion -> . MAX L_PARENT ID PUNTO ID R_PARENT
 
     ID              shift and go to state 9
     COUNT           shift and go to state 11
     MIN             shift and go to state 12
     MAX             shift and go to state 13
 
-    CAMPO                          shift and go to state 20
-    COL                            shift and go to state 8
-    FUNCION                        shift and go to state 10
+    campo                          shift and go to state 20
+    col                            shift and go to state 8
+    funcion                        shift and go to state 10
 
 state 8
 
-    (4) CAMPO -> COL . COMA CAMPO
-    (5) CAMPO -> COL .
+    (4) campo -> col . COMA campo
+    (5) campo -> col .
 
     COMA            shift and go to state 21
-    FROM            reduce using rule 5 (CAMPO -> COL .)
+    FROM            reduce using rule 5 (campo -> col .)
 
 
 state 9
 
-    (6) COL -> ID . PUNTO ID
-    (7) COL -> ID . PUNTO ID AS COMILLA ID COMILLA
+    (49) col -> ID . PUNTO ID AS ID
+    (50) col -> ID . PUNTO ID
 
     PUNTO           shift and go to state 22
 
 
 state 10
 
-    (8) COL -> FUNCION . AS COMILLA ID COMILLA
+    (51) col -> funcion . AS ID
 
     AS              shift and go to state 23
 
 
 state 11
 
-    (9) FUNCION -> COUNT . L_PARENT ID PUNTO ID R_PARENT
-    (10) FUNCION -> COUNT . DISTINCT L_PARENT ID PUNTO ID R_PARENT
+    (6) funcion -> COUNT . L_PARENT ID PUNTO ID R_PARENT
+    (7) funcion -> COUNT . DISTINCT L_PARENT ID PUNTO ID R_PARENT
 
     L_PARENT        shift and go to state 24
     DISTINCT        shift and go to state 25
@@ -271,1160 +273,1152 @@ state 11
 
 state 12
 
-    (11) FUNCION -> MIN . L_PARENT ID PUNTO ID R_PARENT
+    (8) funcion -> MIN . L_PARENT ID PUNTO ID R_PARENT
 
     L_PARENT        shift and go to state 26
 
 
 state 13
 
-    (12) FUNCION -> MAX . L_PARENT ID PUNTO ID R_PARENT
+    (9) funcion -> MAX . L_PARENT ID PUNTO ID R_PARENT
 
     L_PARENT        shift and go to state 27
 
 
 state 14
 
-    (1) CONSULTA -> SELECT_ FROM_ JOIN_ . WHERE_ GROUP_ ORDER_
-    (22) WHERE_ -> . WHERE W
-    (23) WHERE_ -> .
+    (1) consulta -> select from join . where group order
+    (20) where -> . WHERE w
+    (21) where -> .
 
     WHERE           shift and go to state 29
-    GROUP           reduce using rule 23 (WHERE_ -> .)
-    ORDER           reduce using rule 23 (WHERE_ -> .)
-    $end            reduce using rule 23 (WHERE_ -> .)
-    R_PARENT        reduce using rule 23 (WHERE_ -> .)
+    GROUP           reduce using rule 21 (where -> .)
+    ORDER           reduce using rule 21 (where -> .)
+    $end            reduce using rule 21 (where -> .)
+    R_PARENT        reduce using rule 21 (where -> .)
 
-    WHERE_                         shift and go to state 28
+    where                          shift and go to state 28
 
 state 15
 
-    (18) JOIN_ -> INNER . JOIN J
+    (16) join -> INNER . JOIN j
 
     JOIN            shift and go to state 30
 
 
 state 16
 
-    (19) JOIN_ -> LEFT . JOIN J
+    (17) join -> LEFT . JOIN j
 
     JOIN            shift and go to state 31
 
 
 state 17
 
-    (13) FROM_ -> FROM TABLA .
+    (10) from -> FROM tabla .
 
-    INNER           reduce using rule 13 (FROM_ -> FROM TABLA .)
-    LEFT            reduce using rule 13 (FROM_ -> FROM TABLA .)
-    WHERE           reduce using rule 13 (FROM_ -> FROM TABLA .)
-    GROUP           reduce using rule 13 (FROM_ -> FROM TABLA .)
-    ORDER           reduce using rule 13 (FROM_ -> FROM TABLA .)
-    $end            reduce using rule 13 (FROM_ -> FROM TABLA .)
-    R_PARENT        reduce using rule 13 (FROM_ -> FROM TABLA .)
+    INNER           reduce using rule 10 (from -> FROM tabla .)
+    LEFT            reduce using rule 10 (from -> FROM tabla .)
+    WHERE           reduce using rule 10 (from -> FROM tabla .)
+    GROUP           reduce using rule 10 (from -> FROM tabla .)
+    ORDER           reduce using rule 10 (from -> FROM tabla .)
+    $end            reduce using rule 10 (from -> FROM tabla .)
+    R_PARENT        reduce using rule 10 (from -> FROM tabla .)
 
 
 state 18
 
-    (14) TABLA -> TAB .
-    (15) TABLA -> TAB . COMA TABLA
+    (11) tabla -> tab .
+    (12) tabla -> tab . COMA tabla
 
-    INNER           reduce using rule 14 (TABLA -> TAB .)
-    LEFT            reduce using rule 14 (TABLA -> TAB .)
-    WHERE           reduce using rule 14 (TABLA -> TAB .)
-    GROUP           reduce using rule 14 (TABLA -> TAB .)
-    ORDER           reduce using rule 14 (TABLA -> TAB .)
-    $end            reduce using rule 14 (TABLA -> TAB .)
-    R_PARENT        reduce using rule 14 (TABLA -> TAB .)
+    INNER           reduce using rule 11 (tabla -> tab .)
+    LEFT            reduce using rule 11 (tabla -> tab .)
+    WHERE           reduce using rule 11 (tabla -> tab .)
+    GROUP           reduce using rule 11 (tabla -> tab .)
+    ORDER           reduce using rule 11 (tabla -> tab .)
+    $end            reduce using rule 11 (tabla -> tab .)
+    R_PARENT        reduce using rule 11 (tabla -> tab .)
     COMA            shift and go to state 32
 
 
 state 19
 
-    (16) TAB -> ID .
-    (17) TAB -> ID . AS ID
+    (13) tab -> ID .
+    (14) tab -> ID . ID
+    (15) tab -> ID . AS ID
 
-    COMA            reduce using rule 16 (TAB -> ID .)
-    INNER           reduce using rule 16 (TAB -> ID .)
-    LEFT            reduce using rule 16 (TAB -> ID .)
-    WHERE           reduce using rule 16 (TAB -> ID .)
-    GROUP           reduce using rule 16 (TAB -> ID .)
-    ORDER           reduce using rule 16 (TAB -> ID .)
-    $end            reduce using rule 16 (TAB -> ID .)
-    R_PARENT        reduce using rule 16 (TAB -> ID .)
-    ON              reduce using rule 16 (TAB -> ID .)
-    AS              shift and go to state 33
+    COMA            reduce using rule 13 (tab -> ID .)
+    INNER           reduce using rule 13 (tab -> ID .)
+    LEFT            reduce using rule 13 (tab -> ID .)
+    WHERE           reduce using rule 13 (tab -> ID .)
+    GROUP           reduce using rule 13 (tab -> ID .)
+    ORDER           reduce using rule 13 (tab -> ID .)
+    $end            reduce using rule 13 (tab -> ID .)
+    R_PARENT        reduce using rule 13 (tab -> ID .)
+    ON              reduce using rule 13 (tab -> ID .)
+    ID              shift and go to state 33
+    AS              shift and go to state 34
 
 
 state 20
 
-    (3) SELECT_ -> SELECT DISTINCT CAMPO .
+    (3) select -> SELECT DISTINCT campo .
 
-    FROM            reduce using rule 3 (SELECT_ -> SELECT DISTINCT CAMPO .)
+    FROM            reduce using rule 3 (select -> SELECT DISTINCT campo .)
 
 
 state 21
 
-    (4) CAMPO -> COL COMA . CAMPO
-    (4) CAMPO -> . COL COMA CAMPO
-    (5) CAMPO -> . COL
-    (6) COL -> . ID PUNTO ID
-    (7) COL -> . ID PUNTO ID AS COMILLA ID COMILLA
-    (8) COL -> . FUNCION AS COMILLA ID COMILLA
-    (9) FUNCION -> . COUNT L_PARENT ID PUNTO ID R_PARENT
-    (10) FUNCION -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
-    (11) FUNCION -> . MIN L_PARENT ID PUNTO ID R_PARENT
-    (12) FUNCION -> . MAX L_PARENT ID PUNTO ID R_PARENT
+    (4) campo -> col COMA . campo
+    (4) campo -> . col COMA campo
+    (5) campo -> . col
+    (49) col -> . ID PUNTO ID AS ID
+    (50) col -> . ID PUNTO ID
+    (51) col -> . funcion AS ID
+    (6) funcion -> . COUNT L_PARENT ID PUNTO ID R_PARENT
+    (7) funcion -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
+    (8) funcion -> . MIN L_PARENT ID PUNTO ID R_PARENT
+    (9) funcion -> . MAX L_PARENT ID PUNTO ID R_PARENT
 
     ID              shift and go to state 9
     COUNT           shift and go to state 11
     MIN             shift and go to state 12
     MAX             shift and go to state 13
 
-    COL                            shift and go to state 8
-    CAMPO                          shift and go to state 34
-    FUNCION                        shift and go to state 10
+    col                            shift and go to state 8
+    campo                          shift and go to state 35
+    funcion                        shift and go to state 10
 
 state 22
 
-    (6) COL -> ID PUNTO . ID
-    (7) COL -> ID PUNTO . ID AS COMILLA ID COMILLA
+    (49) col -> ID PUNTO . ID AS ID
+    (50) col -> ID PUNTO . ID
 
-    ID              shift and go to state 35
+    ID              shift and go to state 36
 
 
 state 23
 
-    (8) COL -> FUNCION AS . COMILLA ID COMILLA
-
-    COMILLA         shift and go to state 36
-
-
-state 24
-
-    (9) FUNCION -> COUNT L_PARENT . ID PUNTO ID R_PARENT
+    (51) col -> funcion AS . ID
 
     ID              shift and go to state 37
 
 
+state 24
+
+    (6) funcion -> COUNT L_PARENT . ID PUNTO ID R_PARENT
+
+    ID              shift and go to state 38
+
+
 state 25
 
-    (10) FUNCION -> COUNT DISTINCT . L_PARENT ID PUNTO ID R_PARENT
+    (7) funcion -> COUNT DISTINCT . L_PARENT ID PUNTO ID R_PARENT
 
-    L_PARENT        shift and go to state 38
+    L_PARENT        shift and go to state 39
 
 
 state 26
 
-    (11) FUNCION -> MIN L_PARENT . ID PUNTO ID R_PARENT
-
-    ID              shift and go to state 39
-
-
-state 27
-
-    (12) FUNCION -> MAX L_PARENT . ID PUNTO ID R_PARENT
+    (8) funcion -> MIN L_PARENT . ID PUNTO ID R_PARENT
 
     ID              shift and go to state 40
 
 
+state 27
+
+    (9) funcion -> MAX L_PARENT . ID PUNTO ID R_PARENT
+
+    ID              shift and go to state 41
+
+
 state 28
 
-    (1) CONSULTA -> SELECT_ FROM_ JOIN_ WHERE_ . GROUP_ ORDER_
-    (39) GROUP_ -> . GROUP BY CAMPO_G HAV
-    (40) GROUP_ -> .
+    (1) consulta -> select from join where . group order
+    (37) group -> . GROUP BY campo_g hav
+    (38) group -> .
 
-    GROUP           shift and go to state 42
-    ORDER           reduce using rule 40 (GROUP_ -> .)
-    $end            reduce using rule 40 (GROUP_ -> .)
-    R_PARENT        reduce using rule 40 (GROUP_ -> .)
+    GROUP           shift and go to state 43
+    ORDER           reduce using rule 38 (group -> .)
+    $end            reduce using rule 38 (group -> .)
+    R_PARENT        reduce using rule 38 (group -> .)
 
-    GROUP_                         shift and go to state 41
+    group                          shift and go to state 42
 
 state 29
 
-    (22) WHERE_ -> WHERE . W
-    (24) W -> . ID PUNTO ID SIM ID PUNTO ID
-    (25) W -> . ID PUNTO ID SIM VALOR
-    (26) W -> . ID PUNTO ID SUB
-    (27) W -> . W AND W
-    (28) W -> . W OR W
+    (20) where -> WHERE . w
+    (22) w -> . ID PUNTO ID sim ID PUNTO ID
+    (23) w -> . ID PUNTO ID sim valor
+    (24) w -> . ID PUNTO ID sub
+    (25) w -> . w AND w
+    (26) w -> . w OR w
 
-    ID              shift and go to state 44
+    ID              shift and go to state 45
 
-    W                              shift and go to state 43
+    w                              shift and go to state 44
 
 state 30
 
-    (18) JOIN_ -> INNER JOIN . J
-    (21) J -> . TAB ON W
-    (16) TAB -> . ID
-    (17) TAB -> . ID AS ID
+    (16) join -> INNER JOIN . j
+    (19) j -> . tab ON w
+    (13) tab -> . ID
+    (14) tab -> . ID ID
+    (15) tab -> . ID AS ID
 
     ID              shift and go to state 19
 
-    J                              shift and go to state 45
-    TAB                            shift and go to state 46
+    j                              shift and go to state 46
+    tab                            shift and go to state 47
 
 state 31
 
-    (19) JOIN_ -> LEFT JOIN . J
-    (21) J -> . TAB ON W
-    (16) TAB -> . ID
-    (17) TAB -> . ID AS ID
+    (17) join -> LEFT JOIN . j
+    (19) j -> . tab ON w
+    (13) tab -> . ID
+    (14) tab -> . ID ID
+    (15) tab -> . ID AS ID
 
     ID              shift and go to state 19
 
-    J                              shift and go to state 47
-    TAB                            shift and go to state 46
+    j                              shift and go to state 48
+    tab                            shift and go to state 47
 
 state 32
 
-    (15) TABLA -> TAB COMA . TABLA
-    (14) TABLA -> . TAB
-    (15) TABLA -> . TAB COMA TABLA
-    (16) TAB -> . ID
-    (17) TAB -> . ID AS ID
+    (12) tabla -> tab COMA . tabla
+    (11) tabla -> . tab
+    (12) tabla -> . tab COMA tabla
+    (13) tab -> . ID
+    (14) tab -> . ID ID
+    (15) tab -> . ID AS ID
 
     ID              shift and go to state 19
 
-    TAB                            shift and go to state 18
-    TABLA                          shift and go to state 48
+    tab                            shift and go to state 18
+    tabla                          shift and go to state 49
 
 state 33
 
-    (17) TAB -> ID AS . ID
+    (14) tab -> ID ID .
 
-    ID              shift and go to state 49
+    COMA            reduce using rule 14 (tab -> ID ID .)
+    INNER           reduce using rule 14 (tab -> ID ID .)
+    LEFT            reduce using rule 14 (tab -> ID ID .)
+    WHERE           reduce using rule 14 (tab -> ID ID .)
+    GROUP           reduce using rule 14 (tab -> ID ID .)
+    ORDER           reduce using rule 14 (tab -> ID ID .)
+    $end            reduce using rule 14 (tab -> ID ID .)
+    R_PARENT        reduce using rule 14 (tab -> ID ID .)
+    ON              reduce using rule 14 (tab -> ID ID .)
 
 
 state 34
 
-    (4) CAMPO -> COL COMA CAMPO .
+    (15) tab -> ID AS . ID
 
-    FROM            reduce using rule 4 (CAMPO -> COL COMA CAMPO .)
+    ID              shift and go to state 50
 
 
 state 35
 
-    (6) COL -> ID PUNTO ID .
-    (7) COL -> ID PUNTO ID . AS COMILLA ID COMILLA
+    (4) campo -> col COMA campo .
 
-    COMA            reduce using rule 6 (COL -> ID PUNTO ID .)
-    FROM            reduce using rule 6 (COL -> ID PUNTO ID .)
-    AS              shift and go to state 50
+    FROM            reduce using rule 4 (campo -> col COMA campo .)
 
 
 state 36
 
-    (8) COL -> FUNCION AS COMILLA . ID COMILLA
+    (49) col -> ID PUNTO ID . AS ID
+    (50) col -> ID PUNTO ID .
 
-    ID              shift and go to state 51
+    AS              shift and go to state 51
+    COMA            reduce using rule 50 (col -> ID PUNTO ID .)
+    FROM            reduce using rule 50 (col -> ID PUNTO ID .)
 
 
 state 37
 
-    (9) FUNCION -> COUNT L_PARENT ID . PUNTO ID R_PARENT
+    (51) col -> funcion AS ID .
 
-    PUNTO           shift and go to state 52
+    COMA            reduce using rule 51 (col -> funcion AS ID .)
+    FROM            reduce using rule 51 (col -> funcion AS ID .)
 
 
 state 38
 
-    (10) FUNCION -> COUNT DISTINCT L_PARENT . ID PUNTO ID R_PARENT
+    (6) funcion -> COUNT L_PARENT ID . PUNTO ID R_PARENT
 
-    ID              shift and go to state 53
+    PUNTO           shift and go to state 52
 
 
 state 39
 
-    (11) FUNCION -> MIN L_PARENT ID . PUNTO ID R_PARENT
+    (7) funcion -> COUNT DISTINCT L_PARENT . ID PUNTO ID R_PARENT
 
-    PUNTO           shift and go to state 54
+    ID              shift and go to state 53
 
 
 state 40
 
-    (12) FUNCION -> MAX L_PARENT ID . PUNTO ID R_PARENT
+    (8) funcion -> MIN L_PARENT ID . PUNTO ID R_PARENT
 
-    PUNTO           shift and go to state 55
+    PUNTO           shift and go to state 54
 
 
 state 41
 
-    (1) CONSULTA -> SELECT_ FROM_ JOIN_ WHERE_ GROUP_ . ORDER_
-    (45) ORDER_ -> . ORDER BY CAMPO_O
-    (46) ORDER_ -> .
+    (9) funcion -> MAX L_PARENT ID . PUNTO ID R_PARENT
 
-    ORDER           shift and go to state 57
-    $end            reduce using rule 46 (ORDER_ -> .)
-    R_PARENT        reduce using rule 46 (ORDER_ -> .)
+    PUNTO           shift and go to state 55
 
-    ORDER_                         shift and go to state 56
 
 state 42
 
-    (39) GROUP_ -> GROUP . BY CAMPO_G HAV
+    (1) consulta -> select from join where group . order
+    (43) order -> . ORDER BY campo_o
+    (44) order -> .
+
+    ORDER           shift and go to state 57
+    $end            reduce using rule 44 (order -> .)
+    R_PARENT        reduce using rule 44 (order -> .)
+
+    order                          shift and go to state 56
+
+state 43
+
+    (37) group -> GROUP . BY campo_g hav
 
     BY              shift and go to state 58
 
 
-state 43
-
-    (22) WHERE_ -> WHERE W .
-    (27) W -> W . AND W
-    (28) W -> W . OR W
-
-    GROUP           reduce using rule 22 (WHERE_ -> WHERE W .)
-    ORDER           reduce using rule 22 (WHERE_ -> WHERE W .)
-    $end            reduce using rule 22 (WHERE_ -> WHERE W .)
-    R_PARENT        reduce using rule 22 (WHERE_ -> WHERE W .)
-    AND             shift and go to state 59
-    OR              shift and go to state 60
-
-
 state 44
 
-    (24) W -> ID . PUNTO ID SIM ID PUNTO ID
-    (25) W -> ID . PUNTO ID SIM VALOR
-    (26) W -> ID . PUNTO ID SUB
+    (20) where -> WHERE w .
+    (25) w -> w . AND w
+    (26) w -> w . OR w
 
-    PUNTO           shift and go to state 61
+    GROUP           reduce using rule 20 (where -> WHERE w .)
+    ORDER           reduce using rule 20 (where -> WHERE w .)
+    $end            reduce using rule 20 (where -> WHERE w .)
+    R_PARENT        reduce using rule 20 (where -> WHERE w .)
+    AND             shift and go to state 59
+    OR              shift and go to state 60
 
 
 state 45
 
-    (18) JOIN_ -> INNER JOIN J .
+    (22) w -> ID . PUNTO ID sim ID PUNTO ID
+    (23) w -> ID . PUNTO ID sim valor
+    (24) w -> ID . PUNTO ID sub
 
-    WHERE           reduce using rule 18 (JOIN_ -> INNER JOIN J .)
-    GROUP           reduce using rule 18 (JOIN_ -> INNER JOIN J .)
-    ORDER           reduce using rule 18 (JOIN_ -> INNER JOIN J .)
-    $end            reduce using rule 18 (JOIN_ -> INNER JOIN J .)
-    R_PARENT        reduce using rule 18 (JOIN_ -> INNER JOIN J .)
+    PUNTO           shift and go to state 61
 
 
 state 46
 
-    (21) J -> TAB . ON W
+    (16) join -> INNER JOIN j .
 
-    ON              shift and go to state 62
+    WHERE           reduce using rule 16 (join -> INNER JOIN j .)
+    GROUP           reduce using rule 16 (join -> INNER JOIN j .)
+    ORDER           reduce using rule 16 (join -> INNER JOIN j .)
+    $end            reduce using rule 16 (join -> INNER JOIN j .)
+    R_PARENT        reduce using rule 16 (join -> INNER JOIN j .)
 
 
 state 47
 
-    (19) JOIN_ -> LEFT JOIN J .
+    (19) j -> tab . ON w
 
-    WHERE           reduce using rule 19 (JOIN_ -> LEFT JOIN J .)
-    GROUP           reduce using rule 19 (JOIN_ -> LEFT JOIN J .)
-    ORDER           reduce using rule 19 (JOIN_ -> LEFT JOIN J .)
-    $end            reduce using rule 19 (JOIN_ -> LEFT JOIN J .)
-    R_PARENT        reduce using rule 19 (JOIN_ -> LEFT JOIN J .)
+    ON              shift and go to state 62
 
 
 state 48
 
-    (15) TABLA -> TAB COMA TABLA .
+    (17) join -> LEFT JOIN j .
 
-    INNER           reduce using rule 15 (TABLA -> TAB COMA TABLA .)
-    LEFT            reduce using rule 15 (TABLA -> TAB COMA TABLA .)
-    WHERE           reduce using rule 15 (TABLA -> TAB COMA TABLA .)
-    GROUP           reduce using rule 15 (TABLA -> TAB COMA TABLA .)
-    ORDER           reduce using rule 15 (TABLA -> TAB COMA TABLA .)
-    $end            reduce using rule 15 (TABLA -> TAB COMA TABLA .)
-    R_PARENT        reduce using rule 15 (TABLA -> TAB COMA TABLA .)
+    WHERE           reduce using rule 17 (join -> LEFT JOIN j .)
+    GROUP           reduce using rule 17 (join -> LEFT JOIN j .)
+    ORDER           reduce using rule 17 (join -> LEFT JOIN j .)
+    $end            reduce using rule 17 (join -> LEFT JOIN j .)
+    R_PARENT        reduce using rule 17 (join -> LEFT JOIN j .)
 
 
 state 49
 
-    (17) TAB -> ID AS ID .
+    (12) tabla -> tab COMA tabla .
 
-    COMA            reduce using rule 17 (TAB -> ID AS ID .)
-    INNER           reduce using rule 17 (TAB -> ID AS ID .)
-    LEFT            reduce using rule 17 (TAB -> ID AS ID .)
-    WHERE           reduce using rule 17 (TAB -> ID AS ID .)
-    GROUP           reduce using rule 17 (TAB -> ID AS ID .)
-    ORDER           reduce using rule 17 (TAB -> ID AS ID .)
-    $end            reduce using rule 17 (TAB -> ID AS ID .)
-    R_PARENT        reduce using rule 17 (TAB -> ID AS ID .)
-    ON              reduce using rule 17 (TAB -> ID AS ID .)
+    INNER           reduce using rule 12 (tabla -> tab COMA tabla .)
+    LEFT            reduce using rule 12 (tabla -> tab COMA tabla .)
+    WHERE           reduce using rule 12 (tabla -> tab COMA tabla .)
+    GROUP           reduce using rule 12 (tabla -> tab COMA tabla .)
+    ORDER           reduce using rule 12 (tabla -> tab COMA tabla .)
+    $end            reduce using rule 12 (tabla -> tab COMA tabla .)
+    R_PARENT        reduce using rule 12 (tabla -> tab COMA tabla .)
 
 
 state 50
 
-    (7) COL -> ID PUNTO ID AS . COMILLA ID COMILLA
+    (15) tab -> ID AS ID .
 
-    COMILLA         shift and go to state 63
+    COMA            reduce using rule 15 (tab -> ID AS ID .)
+    INNER           reduce using rule 15 (tab -> ID AS ID .)
+    LEFT            reduce using rule 15 (tab -> ID AS ID .)
+    WHERE           reduce using rule 15 (tab -> ID AS ID .)
+    GROUP           reduce using rule 15 (tab -> ID AS ID .)
+    ORDER           reduce using rule 15 (tab -> ID AS ID .)
+    $end            reduce using rule 15 (tab -> ID AS ID .)
+    R_PARENT        reduce using rule 15 (tab -> ID AS ID .)
+    ON              reduce using rule 15 (tab -> ID AS ID .)
 
 
 state 51
 
-    (8) COL -> FUNCION AS COMILLA ID . COMILLA
+    (49) col -> ID PUNTO ID AS . ID
 
-    COMILLA         shift and go to state 64
+    ID              shift and go to state 63
 
 
 state 52
 
-    (9) FUNCION -> COUNT L_PARENT ID PUNTO . ID R_PARENT
+    (6) funcion -> COUNT L_PARENT ID PUNTO . ID R_PARENT
 
-    ID              shift and go to state 65
+    ID              shift and go to state 64
 
 
 state 53
 
-    (10) FUNCION -> COUNT DISTINCT L_PARENT ID . PUNTO ID R_PARENT
+    (7) funcion -> COUNT DISTINCT L_PARENT ID . PUNTO ID R_PARENT
 
-    PUNTO           shift and go to state 66
+    PUNTO           shift and go to state 65
 
 
 state 54
 
-    (11) FUNCION -> MIN L_PARENT ID PUNTO . ID R_PARENT
+    (8) funcion -> MIN L_PARENT ID PUNTO . ID R_PARENT
 
-    ID              shift and go to state 67
+    ID              shift and go to state 66
 
 
 state 55
 
-    (12) FUNCION -> MAX L_PARENT ID PUNTO . ID R_PARENT
+    (9) funcion -> MAX L_PARENT ID PUNTO . ID R_PARENT
 
-    ID              shift and go to state 68
+    ID              shift and go to state 67
 
 
 state 56
 
-    (1) CONSULTA -> SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_ .
+    (1) consulta -> select from join where group order .
 
-    $end            reduce using rule 1 (CONSULTA -> SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_ .)
-    R_PARENT        reduce using rule 1 (CONSULTA -> SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_ .)
+    $end            reduce using rule 1 (consulta -> select from join where group order .)
+    R_PARENT        reduce using rule 1 (consulta -> select from join where group order .)
 
 
 state 57
 
-    (45) ORDER_ -> ORDER . BY CAMPO_O
+    (43) order -> ORDER . BY campo_o
 
-    BY              shift and go to state 69
+    BY              shift and go to state 68
 
 
 state 58
 
-    (39) GROUP_ -> GROUP BY . CAMPO_G HAV
-    (41) CAMPO_G -> . ID PUNTO ID
-    (42) CAMPO_G -> . ID PUNTO ID COMA CAMPO_G
+    (37) group -> GROUP BY . campo_g hav
+    (39) campo_g -> . ID PUNTO ID
+    (40) campo_g -> . ID PUNTO ID COMA campo_g
 
-    ID              shift and go to state 71
+    ID              shift and go to state 70
 
-    CAMPO_G                        shift and go to state 70
+    campo_g                        shift and go to state 69
 
 state 59
 
-    (27) W -> W AND . W
-    (24) W -> . ID PUNTO ID SIM ID PUNTO ID
-    (25) W -> . ID PUNTO ID SIM VALOR
-    (26) W -> . ID PUNTO ID SUB
-    (27) W -> . W AND W
-    (28) W -> . W OR W
+    (25) w -> w AND . w
+    (22) w -> . ID PUNTO ID sim ID PUNTO ID
+    (23) w -> . ID PUNTO ID sim valor
+    (24) w -> . ID PUNTO ID sub
+    (25) w -> . w AND w
+    (26) w -> . w OR w
 
-    ID              shift and go to state 44
+    ID              shift and go to state 45
 
-    W                              shift and go to state 72
+    w                              shift and go to state 71
 
 state 60
 
-    (28) W -> W OR . W
-    (24) W -> . ID PUNTO ID SIM ID PUNTO ID
-    (25) W -> . ID PUNTO ID SIM VALOR
-    (26) W -> . ID PUNTO ID SUB
-    (27) W -> . W AND W
-    (28) W -> . W OR W
+    (26) w -> w OR . w
+    (22) w -> . ID PUNTO ID sim ID PUNTO ID
+    (23) w -> . ID PUNTO ID sim valor
+    (24) w -> . ID PUNTO ID sub
+    (25) w -> . w AND w
+    (26) w -> . w OR w
 
-    ID              shift and go to state 44
+    ID              shift and go to state 45
 
-    W                              shift and go to state 73
+    w                              shift and go to state 72
 
 state 61
 
-    (24) W -> ID PUNTO . ID SIM ID PUNTO ID
-    (25) W -> ID PUNTO . ID SIM VALOR
-    (26) W -> ID PUNTO . ID SUB
+    (22) w -> ID PUNTO . ID sim ID PUNTO ID
+    (23) w -> ID PUNTO . ID sim valor
+    (24) w -> ID PUNTO . ID sub
 
-    ID              shift and go to state 74
+    ID              shift and go to state 73
 
 
 state 62
 
-    (21) J -> TAB ON . W
-    (24) W -> . ID PUNTO ID SIM ID PUNTO ID
-    (25) W -> . ID PUNTO ID SIM VALOR
-    (26) W -> . ID PUNTO ID SUB
-    (27) W -> . W AND W
-    (28) W -> . W OR W
+    (19) j -> tab ON . w
+    (22) w -> . ID PUNTO ID sim ID PUNTO ID
+    (23) w -> . ID PUNTO ID sim valor
+    (24) w -> . ID PUNTO ID sub
+    (25) w -> . w AND w
+    (26) w -> . w OR w
 
-    ID              shift and go to state 44
+    ID              shift and go to state 45
 
-    W                              shift and go to state 75
+    w                              shift and go to state 74
 
 state 63
 
-    (7) COL -> ID PUNTO ID AS COMILLA . ID COMILLA
+    (49) col -> ID PUNTO ID AS ID .
 
-    ID              shift and go to state 76
+    COMA            reduce using rule 49 (col -> ID PUNTO ID AS ID .)
+    FROM            reduce using rule 49 (col -> ID PUNTO ID AS ID .)
 
 
 state 64
 
-    (8) COL -> FUNCION AS COMILLA ID COMILLA .
+    (6) funcion -> COUNT L_PARENT ID PUNTO ID . R_PARENT
 
-    COMA            reduce using rule 8 (COL -> FUNCION AS COMILLA ID COMILLA .)
-    FROM            reduce using rule 8 (COL -> FUNCION AS COMILLA ID COMILLA .)
+    R_PARENT        shift and go to state 75
 
 
 state 65
 
-    (9) FUNCION -> COUNT L_PARENT ID PUNTO ID . R_PARENT
+    (7) funcion -> COUNT DISTINCT L_PARENT ID PUNTO . ID R_PARENT
 
-    R_PARENT        shift and go to state 77
+    ID              shift and go to state 76
 
 
 state 66
 
-    (10) FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO . ID R_PARENT
+    (8) funcion -> MIN L_PARENT ID PUNTO ID . R_PARENT
 
-    ID              shift and go to state 78
+    R_PARENT        shift and go to state 77
 
 
 state 67
 
-    (11) FUNCION -> MIN L_PARENT ID PUNTO ID . R_PARENT
+    (9) funcion -> MAX L_PARENT ID PUNTO ID . R_PARENT
 
-    R_PARENT        shift and go to state 79
+    R_PARENT        shift and go to state 78
 
 
 state 68
 
-    (12) FUNCION -> MAX L_PARENT ID PUNTO ID . R_PARENT
+    (43) order -> ORDER BY . campo_o
+    (45) campo_o -> . ID PUNTO ID tipo_o
+    (46) campo_o -> . ID PUNTO ID tipo_o COMA campo_o
 
-    R_PARENT        shift and go to state 80
+    ID              shift and go to state 80
 
+    campo_o                        shift and go to state 79
 
 state 69
 
-    (45) ORDER_ -> ORDER BY . CAMPO_O
-    (47) CAMPO_O -> . ID PUNTO ID TIPO_O
-    (48) CAMPO_O -> . ID PUNTO ID TIPO_O COMA CAMPO_O
+    (37) group -> GROUP BY campo_g . hav
+    (41) hav -> . HAVING funcion sim valor
+    (42) hav -> .
 
-    ID              shift and go to state 82
+    HAVING          shift and go to state 82
+    ORDER           reduce using rule 42 (hav -> .)
+    $end            reduce using rule 42 (hav -> .)
+    R_PARENT        reduce using rule 42 (hav -> .)
 
-    CAMPO_O                        shift and go to state 81
+    hav                            shift and go to state 81
 
 state 70
 
-    (39) GROUP_ -> GROUP BY CAMPO_G . HAV
-    (43) HAV -> . HAVING FUNCION SIM VALOR
-    (44) HAV -> .
+    (39) campo_g -> ID . PUNTO ID
+    (40) campo_g -> ID . PUNTO ID COMA campo_g
 
-    HAVING          shift and go to state 84
-    ORDER           reduce using rule 44 (HAV -> .)
-    $end            reduce using rule 44 (HAV -> .)
-    R_PARENT        reduce using rule 44 (HAV -> .)
+    PUNTO           shift and go to state 83
 
-    HAV                            shift and go to state 83
 
 state 71
 
-    (41) CAMPO_G -> ID . PUNTO ID
-    (42) CAMPO_G -> ID . PUNTO ID COMA CAMPO_G
+    (25) w -> w AND w .
+    (25) w -> w . AND w
+    (26) w -> w . OR w
 
-    PUNTO           shift and go to state 85
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    GROUP           reduce using rule 25 (w -> w AND w .)
+    ORDER           reduce using rule 25 (w -> w AND w .)
+    $end            reduce using rule 25 (w -> w AND w .)
+    R_PARENT        reduce using rule 25 (w -> w AND w .)
+    WHERE           reduce using rule 25 (w -> w AND w .)
+    AND             shift and go to state 59
+    OR              shift and go to state 60
+
+  ! AND             [ reduce using rule 25 (w -> w AND w .) ]
+  ! OR              [ reduce using rule 25 (w -> w AND w .) ]
 
 
 state 72
 
-    (27) W -> W AND W .
-    (27) W -> W . AND W
-    (28) W -> W . OR W
+    (26) w -> w OR w .
+    (25) w -> w . AND w
+    (26) w -> w . OR w
 
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
-    GROUP           reduce using rule 27 (W -> W AND W .)
-    ORDER           reduce using rule 27 (W -> W AND W .)
-    $end            reduce using rule 27 (W -> W AND W .)
-    R_PARENT        reduce using rule 27 (W -> W AND W .)
-    WHERE           reduce using rule 27 (W -> W AND W .)
+    GROUP           reduce using rule 26 (w -> w OR w .)
+    ORDER           reduce using rule 26 (w -> w OR w .)
+    $end            reduce using rule 26 (w -> w OR w .)
+    R_PARENT        reduce using rule 26 (w -> w OR w .)
+    WHERE           reduce using rule 26 (w -> w OR w .)
     AND             shift and go to state 59
     OR              shift and go to state 60
 
-  ! AND             [ reduce using rule 27 (W -> W AND W .) ]
-  ! OR              [ reduce using rule 27 (W -> W AND W .) ]
+  ! AND             [ reduce using rule 26 (w -> w OR w .) ]
+  ! OR              [ reduce using rule 26 (w -> w OR w .) ]
 
 
 state 73
 
-    (28) W -> W OR W .
-    (27) W -> W . AND W
-    (28) W -> W . OR W
+    (22) w -> ID PUNTO ID . sim ID PUNTO ID
+    (23) w -> ID PUNTO ID . sim valor
+    (24) w -> ID PUNTO ID . sub
+    (27) sim -> . IGUAL
+    (28) sim -> . MAYOR_IGUAL
+    (29) sim -> . MENOR_IGUAL
+    (30) sim -> . MAYOR
+    (31) sim -> . MENOR
+    (32) sim -> . DIFERENTE
+    (33) sub -> . IN L_PARENT consulta R_PARENT
+    (34) sub -> . NOT IN L_PARENT consulta R_PARENT
 
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-    GROUP           reduce using rule 28 (W -> W OR W .)
-    ORDER           reduce using rule 28 (W -> W OR W .)
-    $end            reduce using rule 28 (W -> W OR W .)
-    R_PARENT        reduce using rule 28 (W -> W OR W .)
-    WHERE           reduce using rule 28 (W -> W OR W .)
-    AND             shift and go to state 59
-    OR              shift and go to state 60
+    IGUAL           shift and go to state 86
+    MAYOR_IGUAL     shift and go to state 87
+    MENOR_IGUAL     shift and go to state 88
+    MAYOR           shift and go to state 89
+    MENOR           shift and go to state 90
+    DIFERENTE       shift and go to state 91
+    IN              shift and go to state 92
+    NOT             shift and go to state 93
 
-  ! AND             [ reduce using rule 28 (W -> W OR W .) ]
-  ! OR              [ reduce using rule 28 (W -> W OR W .) ]
-
+    sim                            shift and go to state 84
+    sub                            shift and go to state 85
 
 state 74
 
-    (24) W -> ID PUNTO ID . SIM ID PUNTO ID
-    (25) W -> ID PUNTO ID . SIM VALOR
-    (26) W -> ID PUNTO ID . SUB
-    (29) SIM -> . IGUAL
-    (30) SIM -> . MAYOR_IGUAL
-    (31) SIM -> . MENOR_IGUAL
-    (32) SIM -> . MAYOR
-    (33) SIM -> . MENOR
-    (34) SIM -> . DIFERENTE
-    (35) SUB -> . IN L_PARENT CONSULTA R_PARENT
-    (36) SUB -> . NOT IN L_PARENT CONSULTA R_PARENT
+    (19) j -> tab ON w .
+    (25) w -> w . AND w
+    (26) w -> w . OR w
 
-    IGUAL           shift and go to state 88
-    MAYOR_IGUAL     shift and go to state 89
-    MENOR_IGUAL     shift and go to state 90
-    MAYOR           shift and go to state 91
-    MENOR           shift and go to state 92
-    DIFERENTE       shift and go to state 93
-    IN              shift and go to state 94
-    NOT             shift and go to state 95
+    WHERE           reduce using rule 19 (j -> tab ON w .)
+    GROUP           reduce using rule 19 (j -> tab ON w .)
+    ORDER           reduce using rule 19 (j -> tab ON w .)
+    $end            reduce using rule 19 (j -> tab ON w .)
+    R_PARENT        reduce using rule 19 (j -> tab ON w .)
+    AND             shift and go to state 59
+    OR              shift and go to state 60
 
-    SIM                            shift and go to state 86
-    SUB                            shift and go to state 87
 
 state 75
 
-    (21) J -> TAB ON W .
-    (27) W -> W . AND W
-    (28) W -> W . OR W
+    (6) funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .
 
-    WHERE           reduce using rule 21 (J -> TAB ON W .)
-    GROUP           reduce using rule 21 (J -> TAB ON W .)
-    ORDER           reduce using rule 21 (J -> TAB ON W .)
-    $end            reduce using rule 21 (J -> TAB ON W .)
-    R_PARENT        reduce using rule 21 (J -> TAB ON W .)
-    AND             shift and go to state 59
-    OR              shift and go to state 60
+    AS              reduce using rule 6 (funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
+    IGUAL           reduce using rule 6 (funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR_IGUAL     reduce using rule 6 (funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR_IGUAL     reduce using rule 6 (funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR           reduce using rule 6 (funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR           reduce using rule 6 (funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
+    DIFERENTE       reduce using rule 6 (funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
 
 
 state 76
 
-    (7) COL -> ID PUNTO ID AS COMILLA ID . COMILLA
+    (7) funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID . R_PARENT
 
-    COMILLA         shift and go to state 96
+    R_PARENT        shift and go to state 94
 
 
 state 77
 
-    (9) FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .
+    (8) funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .
 
-    AS              reduce using rule 9 (FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
-    IGUAL           reduce using rule 9 (FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR_IGUAL     reduce using rule 9 (FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR_IGUAL     reduce using rule 9 (FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR           reduce using rule 9 (FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR           reduce using rule 9 (FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
-    DIFERENTE       reduce using rule 9 (FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT .)
+    AS              reduce using rule 8 (funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .)
+    IGUAL           reduce using rule 8 (funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR_IGUAL     reduce using rule 8 (funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR_IGUAL     reduce using rule 8 (funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR           reduce using rule 8 (funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR           reduce using rule 8 (funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .)
+    DIFERENTE       reduce using rule 8 (funcion -> MIN L_PARENT ID PUNTO ID R_PARENT .)
 
 
 state 78
 
-    (10) FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID . R_PARENT
+    (9) funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .
 
-    R_PARENT        shift and go to state 97
+    AS              reduce using rule 9 (funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .)
+    IGUAL           reduce using rule 9 (funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR_IGUAL     reduce using rule 9 (funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR_IGUAL     reduce using rule 9 (funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR           reduce using rule 9 (funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR           reduce using rule 9 (funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .)
+    DIFERENTE       reduce using rule 9 (funcion -> MAX L_PARENT ID PUNTO ID R_PARENT .)
 
 
 state 79
 
-    (11) FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .
+    (43) order -> ORDER BY campo_o .
 
-    AS              reduce using rule 11 (FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .)
-    IGUAL           reduce using rule 11 (FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR_IGUAL     reduce using rule 11 (FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR_IGUAL     reduce using rule 11 (FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR           reduce using rule 11 (FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR           reduce using rule 11 (FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .)
-    DIFERENTE       reduce using rule 11 (FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT .)
+    $end            reduce using rule 43 (order -> ORDER BY campo_o .)
+    R_PARENT        reduce using rule 43 (order -> ORDER BY campo_o .)
 
 
 state 80
 
-    (12) FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .
+    (45) campo_o -> ID . PUNTO ID tipo_o
+    (46) campo_o -> ID . PUNTO ID tipo_o COMA campo_o
 
-    AS              reduce using rule 12 (FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .)
-    IGUAL           reduce using rule 12 (FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR_IGUAL     reduce using rule 12 (FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR_IGUAL     reduce using rule 12 (FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR           reduce using rule 12 (FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR           reduce using rule 12 (FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .)
-    DIFERENTE       reduce using rule 12 (FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT .)
+    PUNTO           shift and go to state 95
 
 
 state 81
 
-    (45) ORDER_ -> ORDER BY CAMPO_O .
+    (37) group -> GROUP BY campo_g hav .
 
-    $end            reduce using rule 45 (ORDER_ -> ORDER BY CAMPO_O .)
-    R_PARENT        reduce using rule 45 (ORDER_ -> ORDER BY CAMPO_O .)
+    ORDER           reduce using rule 37 (group -> GROUP BY campo_g hav .)
+    $end            reduce using rule 37 (group -> GROUP BY campo_g hav .)
+    R_PARENT        reduce using rule 37 (group -> GROUP BY campo_g hav .)
 
 
 state 82
 
-    (47) CAMPO_O -> ID . PUNTO ID TIPO_O
-    (48) CAMPO_O -> ID . PUNTO ID TIPO_O COMA CAMPO_O
-
-    PUNTO           shift and go to state 98
-
-
-state 83
-
-    (39) GROUP_ -> GROUP BY CAMPO_G HAV .
-
-    ORDER           reduce using rule 39 (GROUP_ -> GROUP BY CAMPO_G HAV .)
-    $end            reduce using rule 39 (GROUP_ -> GROUP BY CAMPO_G HAV .)
-    R_PARENT        reduce using rule 39 (GROUP_ -> GROUP BY CAMPO_G HAV .)
-
-
-state 84
-
-    (43) HAV -> HAVING . FUNCION SIM VALOR
-    (9) FUNCION -> . COUNT L_PARENT ID PUNTO ID R_PARENT
-    (10) FUNCION -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
-    (11) FUNCION -> . MIN L_PARENT ID PUNTO ID R_PARENT
-    (12) FUNCION -> . MAX L_PARENT ID PUNTO ID R_PARENT
+    (41) hav -> HAVING . funcion sim valor
+    (6) funcion -> . COUNT L_PARENT ID PUNTO ID R_PARENT
+    (7) funcion -> . COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
+    (8) funcion -> . MIN L_PARENT ID PUNTO ID R_PARENT
+    (9) funcion -> . MAX L_PARENT ID PUNTO ID R_PARENT
 
     COUNT           shift and go to state 11
     MIN             shift and go to state 12
     MAX             shift and go to state 13
 
-    FUNCION                        shift and go to state 99
+    funcion                        shift and go to state 96
+
+state 83
+
+    (39) campo_g -> ID PUNTO . ID
+    (40) campo_g -> ID PUNTO . ID COMA campo_g
+
+    ID              shift and go to state 97
+
+
+state 84
+
+    (22) w -> ID PUNTO ID sim . ID PUNTO ID
+    (23) w -> ID PUNTO ID sim . valor
+    (35) valor -> . COMILLA ID COMILLA
+    (36) valor -> . NUMBER
+
+    ID              shift and go to state 98
+    COMILLA         shift and go to state 100
+    NUMBER          shift and go to state 101
+
+    valor                          shift and go to state 99
 
 state 85
 
-    (41) CAMPO_G -> ID PUNTO . ID
-    (42) CAMPO_G -> ID PUNTO . ID COMA CAMPO_G
+    (24) w -> ID PUNTO ID sub .
 
-    ID              shift and go to state 100
+    AND             reduce using rule 24 (w -> ID PUNTO ID sub .)
+    OR              reduce using rule 24 (w -> ID PUNTO ID sub .)
+    GROUP           reduce using rule 24 (w -> ID PUNTO ID sub .)
+    ORDER           reduce using rule 24 (w -> ID PUNTO ID sub .)
+    $end            reduce using rule 24 (w -> ID PUNTO ID sub .)
+    R_PARENT        reduce using rule 24 (w -> ID PUNTO ID sub .)
+    WHERE           reduce using rule 24 (w -> ID PUNTO ID sub .)
 
 
 state 86
 
-    (24) W -> ID PUNTO ID SIM . ID PUNTO ID
-    (25) W -> ID PUNTO ID SIM . VALOR
-    (37) VALOR -> . COMILLA ID COMILLA
-    (38) VALOR -> . NUMBER
+    (27) sim -> IGUAL .
 
-    ID              shift and go to state 101
-    COMILLA         shift and go to state 103
-    NUMBER          shift and go to state 104
+    ID              reduce using rule 27 (sim -> IGUAL .)
+    COMILLA         reduce using rule 27 (sim -> IGUAL .)
+    NUMBER          reduce using rule 27 (sim -> IGUAL .)
 
-    VALOR                          shift and go to state 102
 
 state 87
 
-    (26) W -> ID PUNTO ID SUB .
+    (28) sim -> MAYOR_IGUAL .
 
-    AND             reduce using rule 26 (W -> ID PUNTO ID SUB .)
-    OR              reduce using rule 26 (W -> ID PUNTO ID SUB .)
-    GROUP           reduce using rule 26 (W -> ID PUNTO ID SUB .)
-    ORDER           reduce using rule 26 (W -> ID PUNTO ID SUB .)
-    $end            reduce using rule 26 (W -> ID PUNTO ID SUB .)
-    R_PARENT        reduce using rule 26 (W -> ID PUNTO ID SUB .)
-    WHERE           reduce using rule 26 (W -> ID PUNTO ID SUB .)
+    ID              reduce using rule 28 (sim -> MAYOR_IGUAL .)
+    COMILLA         reduce using rule 28 (sim -> MAYOR_IGUAL .)
+    NUMBER          reduce using rule 28 (sim -> MAYOR_IGUAL .)
 
 
 state 88
 
-    (29) SIM -> IGUAL .
+    (29) sim -> MENOR_IGUAL .
 
-    ID              reduce using rule 29 (SIM -> IGUAL .)
-    COMILLA         reduce using rule 29 (SIM -> IGUAL .)
-    NUMBER          reduce using rule 29 (SIM -> IGUAL .)
+    ID              reduce using rule 29 (sim -> MENOR_IGUAL .)
+    COMILLA         reduce using rule 29 (sim -> MENOR_IGUAL .)
+    NUMBER          reduce using rule 29 (sim -> MENOR_IGUAL .)
 
 
 state 89
 
-    (30) SIM -> MAYOR_IGUAL .
+    (30) sim -> MAYOR .
 
-    ID              reduce using rule 30 (SIM -> MAYOR_IGUAL .)
-    COMILLA         reduce using rule 30 (SIM -> MAYOR_IGUAL .)
-    NUMBER          reduce using rule 30 (SIM -> MAYOR_IGUAL .)
+    ID              reduce using rule 30 (sim -> MAYOR .)
+    COMILLA         reduce using rule 30 (sim -> MAYOR .)
+    NUMBER          reduce using rule 30 (sim -> MAYOR .)
 
 
 state 90
 
-    (31) SIM -> MENOR_IGUAL .
+    (31) sim -> MENOR .
 
-    ID              reduce using rule 31 (SIM -> MENOR_IGUAL .)
-    COMILLA         reduce using rule 31 (SIM -> MENOR_IGUAL .)
-    NUMBER          reduce using rule 31 (SIM -> MENOR_IGUAL .)
+    ID              reduce using rule 31 (sim -> MENOR .)
+    COMILLA         reduce using rule 31 (sim -> MENOR .)
+    NUMBER          reduce using rule 31 (sim -> MENOR .)
 
 
 state 91
 
-    (32) SIM -> MAYOR .
+    (32) sim -> DIFERENTE .
 
-    ID              reduce using rule 32 (SIM -> MAYOR .)
-    COMILLA         reduce using rule 32 (SIM -> MAYOR .)
-    NUMBER          reduce using rule 32 (SIM -> MAYOR .)
+    ID              reduce using rule 32 (sim -> DIFERENTE .)
+    COMILLA         reduce using rule 32 (sim -> DIFERENTE .)
+    NUMBER          reduce using rule 32 (sim -> DIFERENTE .)
 
 
 state 92
 
-    (33) SIM -> MENOR .
+    (33) sub -> IN . L_PARENT consulta R_PARENT
 
-    ID              reduce using rule 33 (SIM -> MENOR .)
-    COMILLA         reduce using rule 33 (SIM -> MENOR .)
-    NUMBER          reduce using rule 33 (SIM -> MENOR .)
+    L_PARENT        shift and go to state 102
 
 
 state 93
 
-    (34) SIM -> DIFERENTE .
+    (34) sub -> NOT . IN L_PARENT consulta R_PARENT
 
-    ID              reduce using rule 34 (SIM -> DIFERENTE .)
-    COMILLA         reduce using rule 34 (SIM -> DIFERENTE .)
-    NUMBER          reduce using rule 34 (SIM -> DIFERENTE .)
+    IN              shift and go to state 103
 
 
 state 94
 
-    (35) SUB -> IN . L_PARENT CONSULTA R_PARENT
+    (7) funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .
 
-    L_PARENT        shift and go to state 105
+    AS              reduce using rule 7 (funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
+    IGUAL           reduce using rule 7 (funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR_IGUAL     reduce using rule 7 (funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR_IGUAL     reduce using rule 7 (funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
+    MAYOR           reduce using rule 7 (funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
+    MENOR           reduce using rule 7 (funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
+    DIFERENTE       reduce using rule 7 (funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
 
 
 state 95
 
-    (36) SUB -> NOT . IN L_PARENT CONSULTA R_PARENT
+    (45) campo_o -> ID PUNTO . ID tipo_o
+    (46) campo_o -> ID PUNTO . ID tipo_o COMA campo_o
 
-    IN              shift and go to state 106
+    ID              shift and go to state 104
 
 
 state 96
 
-    (7) COL -> ID PUNTO ID AS COMILLA ID COMILLA .
+    (41) hav -> HAVING funcion . sim valor
+    (27) sim -> . IGUAL
+    (28) sim -> . MAYOR_IGUAL
+    (29) sim -> . MENOR_IGUAL
+    (30) sim -> . MAYOR
+    (31) sim -> . MENOR
+    (32) sim -> . DIFERENTE
 
-    COMA            reduce using rule 7 (COL -> ID PUNTO ID AS COMILLA ID COMILLA .)
-    FROM            reduce using rule 7 (COL -> ID PUNTO ID AS COMILLA ID COMILLA .)
+    IGUAL           shift and go to state 86
+    MAYOR_IGUAL     shift and go to state 87
+    MENOR_IGUAL     shift and go to state 88
+    MAYOR           shift and go to state 89
+    MENOR           shift and go to state 90
+    DIFERENTE       shift and go to state 91
 
+    sim                            shift and go to state 105
 
 state 97
 
-    (10) FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .
+    (39) campo_g -> ID PUNTO ID .
+    (40) campo_g -> ID PUNTO ID . COMA campo_g
 
-    AS              reduce using rule 10 (FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
-    IGUAL           reduce using rule 10 (FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR_IGUAL     reduce using rule 10 (FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR_IGUAL     reduce using rule 10 (FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
-    MAYOR           reduce using rule 10 (FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
-    MENOR           reduce using rule 10 (FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
-    DIFERENTE       reduce using rule 10 (FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT .)
+    HAVING          reduce using rule 39 (campo_g -> ID PUNTO ID .)
+    ORDER           reduce using rule 39 (campo_g -> ID PUNTO ID .)
+    $end            reduce using rule 39 (campo_g -> ID PUNTO ID .)
+    R_PARENT        reduce using rule 39 (campo_g -> ID PUNTO ID .)
+    COMA            shift and go to state 106
 
 
 state 98
 
-    (47) CAMPO_O -> ID PUNTO . ID TIPO_O
-    (48) CAMPO_O -> ID PUNTO . ID TIPO_O COMA CAMPO_O
+    (22) w -> ID PUNTO ID sim ID . PUNTO ID
 
-    ID              shift and go to state 107
+    PUNTO           shift and go to state 107
 
 
 state 99
 
-    (43) HAV -> HAVING FUNCION . SIM VALOR
-    (29) SIM -> . IGUAL
-    (30) SIM -> . MAYOR_IGUAL
-    (31) SIM -> . MENOR_IGUAL
-    (32) SIM -> . MAYOR
-    (33) SIM -> . MENOR
-    (34) SIM -> . DIFERENTE
+    (23) w -> ID PUNTO ID sim valor .
 
-    IGUAL           shift and go to state 88
-    MAYOR_IGUAL     shift and go to state 89
-    MENOR_IGUAL     shift and go to state 90
-    MAYOR           shift and go to state 91
-    MENOR           shift and go to state 92
-    DIFERENTE       shift and go to state 93
+    AND             reduce using rule 23 (w -> ID PUNTO ID sim valor .)
+    OR              reduce using rule 23 (w -> ID PUNTO ID sim valor .)
+    GROUP           reduce using rule 23 (w -> ID PUNTO ID sim valor .)
+    ORDER           reduce using rule 23 (w -> ID PUNTO ID sim valor .)
+    $end            reduce using rule 23 (w -> ID PUNTO ID sim valor .)
+    R_PARENT        reduce using rule 23 (w -> ID PUNTO ID sim valor .)
+    WHERE           reduce using rule 23 (w -> ID PUNTO ID sim valor .)
 
-    SIM                            shift and go to state 108
 
 state 100
 
-    (41) CAMPO_G -> ID PUNTO ID .
-    (42) CAMPO_G -> ID PUNTO ID . COMA CAMPO_G
+    (35) valor -> COMILLA . ID COMILLA
 
-    HAVING          reduce using rule 41 (CAMPO_G -> ID PUNTO ID .)
-    ORDER           reduce using rule 41 (CAMPO_G -> ID PUNTO ID .)
-    $end            reduce using rule 41 (CAMPO_G -> ID PUNTO ID .)
-    R_PARENT        reduce using rule 41 (CAMPO_G -> ID PUNTO ID .)
-    COMA            shift and go to state 109
+    ID              shift and go to state 108
 
 
 state 101
 
-    (24) W -> ID PUNTO ID SIM ID . PUNTO ID
+    (36) valor -> NUMBER .
 
-    PUNTO           shift and go to state 110
+    AND             reduce using rule 36 (valor -> NUMBER .)
+    OR              reduce using rule 36 (valor -> NUMBER .)
+    GROUP           reduce using rule 36 (valor -> NUMBER .)
+    ORDER           reduce using rule 36 (valor -> NUMBER .)
+    $end            reduce using rule 36 (valor -> NUMBER .)
+    R_PARENT        reduce using rule 36 (valor -> NUMBER .)
+    WHERE           reduce using rule 36 (valor -> NUMBER .)
 
 
 state 102
 
-    (25) W -> ID PUNTO ID SIM VALOR .
+    (33) sub -> IN L_PARENT . consulta R_PARENT
+    (1) consulta -> . select from join where group order
+    (2) select -> . SELECT campo
+    (3) select -> . SELECT DISTINCT campo
 
-    AND             reduce using rule 25 (W -> ID PUNTO ID SIM VALOR .)
-    OR              reduce using rule 25 (W -> ID PUNTO ID SIM VALOR .)
-    GROUP           reduce using rule 25 (W -> ID PUNTO ID SIM VALOR .)
-    ORDER           reduce using rule 25 (W -> ID PUNTO ID SIM VALOR .)
-    $end            reduce using rule 25 (W -> ID PUNTO ID SIM VALOR .)
-    R_PARENT        reduce using rule 25 (W -> ID PUNTO ID SIM VALOR .)
-    WHERE           reduce using rule 25 (W -> ID PUNTO ID SIM VALOR .)
+    SELECT          shift and go to state 3
 
+    consulta                       shift and go to state 109
+    select                         shift and go to state 2
 
 state 103
 
-    (37) VALOR -> COMILLA . ID COMILLA
+    (34) sub -> NOT IN . L_PARENT consulta R_PARENT
 
-    ID              shift and go to state 111
+    L_PARENT        shift and go to state 110
 
 
 state 104
 
-    (38) VALOR -> NUMBER .
+    (45) campo_o -> ID PUNTO ID . tipo_o
+    (46) campo_o -> ID PUNTO ID . tipo_o COMA campo_o
+    (47) tipo_o -> . ASC
+    (48) tipo_o -> . DESC
 
-    AND             reduce using rule 38 (VALOR -> NUMBER .)
-    OR              reduce using rule 38 (VALOR -> NUMBER .)
-    GROUP           reduce using rule 38 (VALOR -> NUMBER .)
-    ORDER           reduce using rule 38 (VALOR -> NUMBER .)
-    $end            reduce using rule 38 (VALOR -> NUMBER .)
-    R_PARENT        reduce using rule 38 (VALOR -> NUMBER .)
-    WHERE           reduce using rule 38 (VALOR -> NUMBER .)
+    ASC             shift and go to state 112
+    DESC            shift and go to state 113
 
+    tipo_o                         shift and go to state 111
 
 state 105
 
-    (35) SUB -> IN L_PARENT . CONSULTA R_PARENT
-    (1) CONSULTA -> . SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_
-    (2) SELECT_ -> . SELECT CAMPO
-    (3) SELECT_ -> . SELECT DISTINCT CAMPO
+    (41) hav -> HAVING funcion sim . valor
+    (35) valor -> . COMILLA ID COMILLA
+    (36) valor -> . NUMBER
 
-    SELECT          shift and go to state 3
+    COMILLA         shift and go to state 100
+    NUMBER          shift and go to state 101
 
-    CONSULTA                       shift and go to state 112
-    SELECT_                        shift and go to state 2
+    valor                          shift and go to state 114
 
 state 106
 
-    (36) SUB -> NOT IN . L_PARENT CONSULTA R_PARENT
+    (40) campo_g -> ID PUNTO ID COMA . campo_g
+    (39) campo_g -> . ID PUNTO ID
+    (40) campo_g -> . ID PUNTO ID COMA campo_g
 
-    L_PARENT        shift and go to state 113
+    ID              shift and go to state 70
 
+    campo_g                        shift and go to state 115
 
 state 107
 
-    (47) CAMPO_O -> ID PUNTO ID . TIPO_O
-    (48) CAMPO_O -> ID PUNTO ID . TIPO_O COMA CAMPO_O
-    (49) TIPO_O -> . ASC
-    (50) TIPO_O -> . DESC
+    (22) w -> ID PUNTO ID sim ID PUNTO . ID
 
-    ASC             shift and go to state 115
-    DESC            shift and go to state 116
+    ID              shift and go to state 116
 
-    TIPO_O                         shift and go to state 114
 
 state 108
 
-    (43) HAV -> HAVING FUNCION SIM . VALOR
-    (37) VALOR -> . COMILLA ID COMILLA
-    (38) VALOR -> . NUMBER
+    (35) valor -> COMILLA ID . COMILLA
 
-    COMILLA         shift and go to state 103
-    NUMBER          shift and go to state 104
+    COMILLA         shift and go to state 117
 
-    VALOR                          shift and go to state 117
 
 state 109
 
-    (42) CAMPO_G -> ID PUNTO ID COMA . CAMPO_G
-    (41) CAMPO_G -> . ID PUNTO ID
-    (42) CAMPO_G -> . ID PUNTO ID COMA CAMPO_G
+    (33) sub -> IN L_PARENT consulta . R_PARENT
 
-    ID              shift and go to state 71
+    R_PARENT        shift and go to state 118
 
-    CAMPO_G                        shift and go to state 118
 
 state 110
 
-    (24) W -> ID PUNTO ID SIM ID PUNTO . ID
+    (34) sub -> NOT IN L_PARENT . consulta R_PARENT
+    (1) consulta -> . select from join where group order
+    (2) select -> . SELECT campo
+    (3) select -> . SELECT DISTINCT campo
 
-    ID              shift and go to state 119
+    SELECT          shift and go to state 3
 
+    consulta                       shift and go to state 119
+    select                         shift and go to state 2
 
 state 111
 
-    (37) VALOR -> COMILLA ID . COMILLA
+    (45) campo_o -> ID PUNTO ID tipo_o .
+    (46) campo_o -> ID PUNTO ID tipo_o . COMA campo_o
 
-    COMILLA         shift and go to state 120
+    $end            reduce using rule 45 (campo_o -> ID PUNTO ID tipo_o .)
+    R_PARENT        reduce using rule 45 (campo_o -> ID PUNTO ID tipo_o .)
+    COMA            shift and go to state 120
 
 
 state 112
 
-    (35) SUB -> IN L_PARENT CONSULTA . R_PARENT
+    (47) tipo_o -> ASC .
 
-    R_PARENT        shift and go to state 121
+    COMA            reduce using rule 47 (tipo_o -> ASC .)
+    $end            reduce using rule 47 (tipo_o -> ASC .)
+    R_PARENT        reduce using rule 47 (tipo_o -> ASC .)
 
 
 state 113
 
-    (36) SUB -> NOT IN L_PARENT . CONSULTA R_PARENT
-    (1) CONSULTA -> . SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_
-    (2) SELECT_ -> . SELECT CAMPO
-    (3) SELECT_ -> . SELECT DISTINCT CAMPO
+    (48) tipo_o -> DESC .
 
-    SELECT          shift and go to state 3
+    COMA            reduce using rule 48 (tipo_o -> DESC .)
+    $end            reduce using rule 48 (tipo_o -> DESC .)
+    R_PARENT        reduce using rule 48 (tipo_o -> DESC .)
 
-    CONSULTA                       shift and go to state 122
-    SELECT_                        shift and go to state 2
 
 state 114
 
-    (47) CAMPO_O -> ID PUNTO ID TIPO_O .
-    (48) CAMPO_O -> ID PUNTO ID TIPO_O . COMA CAMPO_O
+    (41) hav -> HAVING funcion sim valor .
 
-    $end            reduce using rule 47 (CAMPO_O -> ID PUNTO ID TIPO_O .)
-    R_PARENT        reduce using rule 47 (CAMPO_O -> ID PUNTO ID TIPO_O .)
-    COMA            shift and go to state 123
+    ORDER           reduce using rule 41 (hav -> HAVING funcion sim valor .)
+    $end            reduce using rule 41 (hav -> HAVING funcion sim valor .)
+    R_PARENT        reduce using rule 41 (hav -> HAVING funcion sim valor .)
 
 
 state 115
 
-    (49) TIPO_O -> ASC .
+    (40) campo_g -> ID PUNTO ID COMA campo_g .
 
-    COMA            reduce using rule 49 (TIPO_O -> ASC .)
-    $end            reduce using rule 49 (TIPO_O -> ASC .)
-    R_PARENT        reduce using rule 49 (TIPO_O -> ASC .)
+    HAVING          reduce using rule 40 (campo_g -> ID PUNTO ID COMA campo_g .)
+    ORDER           reduce using rule 40 (campo_g -> ID PUNTO ID COMA campo_g .)
+    $end            reduce using rule 40 (campo_g -> ID PUNTO ID COMA campo_g .)
+    R_PARENT        reduce using rule 40 (campo_g -> ID PUNTO ID COMA campo_g .)
 
 
 state 116
 
-    (50) TIPO_O -> DESC .
+    (22) w -> ID PUNTO ID sim ID PUNTO ID .
 
-    COMA            reduce using rule 50 (TIPO_O -> DESC .)
-    $end            reduce using rule 50 (TIPO_O -> DESC .)
-    R_PARENT        reduce using rule 50 (TIPO_O -> DESC .)
+    AND             reduce using rule 22 (w -> ID PUNTO ID sim ID PUNTO ID .)
+    OR              reduce using rule 22 (w -> ID PUNTO ID sim ID PUNTO ID .)
+    GROUP           reduce using rule 22 (w -> ID PUNTO ID sim ID PUNTO ID .)
+    ORDER           reduce using rule 22 (w -> ID PUNTO ID sim ID PUNTO ID .)
+    $end            reduce using rule 22 (w -> ID PUNTO ID sim ID PUNTO ID .)
+    R_PARENT        reduce using rule 22 (w -> ID PUNTO ID sim ID PUNTO ID .)
+    WHERE           reduce using rule 22 (w -> ID PUNTO ID sim ID PUNTO ID .)
 
 
 state 117
 
-    (43) HAV -> HAVING FUNCION SIM VALOR .
+    (35) valor -> COMILLA ID COMILLA .
 
-    ORDER           reduce using rule 43 (HAV -> HAVING FUNCION SIM VALOR .)
-    $end            reduce using rule 43 (HAV -> HAVING FUNCION SIM VALOR .)
-    R_PARENT        reduce using rule 43 (HAV -> HAVING FUNCION SIM VALOR .)
+    AND             reduce using rule 35 (valor -> COMILLA ID COMILLA .)
+    OR              reduce using rule 35 (valor -> COMILLA ID COMILLA .)
+    GROUP           reduce using rule 35 (valor -> COMILLA ID COMILLA .)
+    ORDER           reduce using rule 35 (valor -> COMILLA ID COMILLA .)
+    $end            reduce using rule 35 (valor -> COMILLA ID COMILLA .)
+    R_PARENT        reduce using rule 35 (valor -> COMILLA ID COMILLA .)
+    WHERE           reduce using rule 35 (valor -> COMILLA ID COMILLA .)
 
 
 state 118
 
-    (42) CAMPO_G -> ID PUNTO ID COMA CAMPO_G .
+    (33) sub -> IN L_PARENT consulta R_PARENT .
 
-    HAVING          reduce using rule 42 (CAMPO_G -> ID PUNTO ID COMA CAMPO_G .)
-    ORDER           reduce using rule 42 (CAMPO_G -> ID PUNTO ID COMA CAMPO_G .)
-    $end            reduce using rule 42 (CAMPO_G -> ID PUNTO ID COMA CAMPO_G .)
-    R_PARENT        reduce using rule 42 (CAMPO_G -> ID PUNTO ID COMA CAMPO_G .)
+    AND             reduce using rule 33 (sub -> IN L_PARENT consulta R_PARENT .)
+    OR              reduce using rule 33 (sub -> IN L_PARENT consulta R_PARENT .)
+    GROUP           reduce using rule 33 (sub -> IN L_PARENT consulta R_PARENT .)
+    ORDER           reduce using rule 33 (sub -> IN L_PARENT consulta R_PARENT .)
+    $end            reduce using rule 33 (sub -> IN L_PARENT consulta R_PARENT .)
+    R_PARENT        reduce using rule 33 (sub -> IN L_PARENT consulta R_PARENT .)
+    WHERE           reduce using rule 33 (sub -> IN L_PARENT consulta R_PARENT .)
 
 
 state 119
 
-    (24) W -> ID PUNTO ID SIM ID PUNTO ID .
+    (34) sub -> NOT IN L_PARENT consulta . R_PARENT
 
-    AND             reduce using rule 24 (W -> ID PUNTO ID SIM ID PUNTO ID .)
-    OR              reduce using rule 24 (W -> ID PUNTO ID SIM ID PUNTO ID .)
-    GROUP           reduce using rule 24 (W -> ID PUNTO ID SIM ID PUNTO ID .)
-    ORDER           reduce using rule 24 (W -> ID PUNTO ID SIM ID PUNTO ID .)
-    $end            reduce using rule 24 (W -> ID PUNTO ID SIM ID PUNTO ID .)
-    R_PARENT        reduce using rule 24 (W -> ID PUNTO ID SIM ID PUNTO ID .)
-    WHERE           reduce using rule 24 (W -> ID PUNTO ID SIM ID PUNTO ID .)
+    R_PARENT        shift and go to state 121
 
 
 state 120
 
-    (37) VALOR -> COMILLA ID COMILLA .
+    (46) campo_o -> ID PUNTO ID tipo_o COMA . campo_o
+    (45) campo_o -> . ID PUNTO ID tipo_o
+    (46) campo_o -> . ID PUNTO ID tipo_o COMA campo_o
 
-    AND             reduce using rule 37 (VALOR -> COMILLA ID COMILLA .)
-    OR              reduce using rule 37 (VALOR -> COMILLA ID COMILLA .)
-    GROUP           reduce using rule 37 (VALOR -> COMILLA ID COMILLA .)
-    ORDER           reduce using rule 37 (VALOR -> COMILLA ID COMILLA .)
-    $end            reduce using rule 37 (VALOR -> COMILLA ID COMILLA .)
-    R_PARENT        reduce using rule 37 (VALOR -> COMILLA ID COMILLA .)
-    WHERE           reduce using rule 37 (VALOR -> COMILLA ID COMILLA .)
+    ID              shift and go to state 80
 
+    campo_o                        shift and go to state 122
 
 state 121
 
-    (35) SUB -> IN L_PARENT CONSULTA R_PARENT .
+    (34) sub -> NOT IN L_PARENT consulta R_PARENT .
 
-    AND             reduce using rule 35 (SUB -> IN L_PARENT CONSULTA R_PARENT .)
-    OR              reduce using rule 35 (SUB -> IN L_PARENT CONSULTA R_PARENT .)
-    GROUP           reduce using rule 35 (SUB -> IN L_PARENT CONSULTA R_PARENT .)
-    ORDER           reduce using rule 35 (SUB -> IN L_PARENT CONSULTA R_PARENT .)
-    $end            reduce using rule 35 (SUB -> IN L_PARENT CONSULTA R_PARENT .)
-    R_PARENT        reduce using rule 35 (SUB -> IN L_PARENT CONSULTA R_PARENT .)
-    WHERE           reduce using rule 35 (SUB -> IN L_PARENT CONSULTA R_PARENT .)
+    AND             reduce using rule 34 (sub -> NOT IN L_PARENT consulta R_PARENT .)
+    OR              reduce using rule 34 (sub -> NOT IN L_PARENT consulta R_PARENT .)
+    GROUP           reduce using rule 34 (sub -> NOT IN L_PARENT consulta R_PARENT .)
+    ORDER           reduce using rule 34 (sub -> NOT IN L_PARENT consulta R_PARENT .)
+    $end            reduce using rule 34 (sub -> NOT IN L_PARENT consulta R_PARENT .)
+    R_PARENT        reduce using rule 34 (sub -> NOT IN L_PARENT consulta R_PARENT .)
+    WHERE           reduce using rule 34 (sub -> NOT IN L_PARENT consulta R_PARENT .)
 
 
 state 122
 
-    (36) SUB -> NOT IN L_PARENT CONSULTA . R_PARENT
+    (46) campo_o -> ID PUNTO ID tipo_o COMA campo_o .
 
-    R_PARENT        shift and go to state 124
-
-
-state 123
-
-    (48) CAMPO_O -> ID PUNTO ID TIPO_O COMA . CAMPO_O
-    (47) CAMPO_O -> . ID PUNTO ID TIPO_O
-    (48) CAMPO_O -> . ID PUNTO ID TIPO_O COMA CAMPO_O
-
-    ID              shift and go to state 82
-
-    CAMPO_O                        shift and go to state 125
-
-state 124
-
-    (36) SUB -> NOT IN L_PARENT CONSULTA R_PARENT .
-
-    AND             reduce using rule 36 (SUB -> NOT IN L_PARENT CONSULTA R_PARENT .)
-    OR              reduce using rule 36 (SUB -> NOT IN L_PARENT CONSULTA R_PARENT .)
-    GROUP           reduce using rule 36 (SUB -> NOT IN L_PARENT CONSULTA R_PARENT .)
-    ORDER           reduce using rule 36 (SUB -> NOT IN L_PARENT CONSULTA R_PARENT .)
-    $end            reduce using rule 36 (SUB -> NOT IN L_PARENT CONSULTA R_PARENT .)
-    R_PARENT        reduce using rule 36 (SUB -> NOT IN L_PARENT CONSULTA R_PARENT .)
-    WHERE           reduce using rule 36 (SUB -> NOT IN L_PARENT CONSULTA R_PARENT .)
-
-
-state 125
-
-    (48) CAMPO_O -> ID PUNTO ID TIPO_O COMA CAMPO_O .
-
-    $end            reduce using rule 48 (CAMPO_O -> ID PUNTO ID TIPO_O COMA CAMPO_O .)
-    R_PARENT        reduce using rule 48 (CAMPO_O -> ID PUNTO ID TIPO_O COMA CAMPO_O .)
+    $end            reduce using rule 46 (campo_o -> ID PUNTO ID tipo_o COMA campo_o .)
+    R_PARENT        reduce using rule 46 (campo_o -> ID PUNTO ID tipo_o COMA campo_o .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
+WARNING: shift/reduce conflict for AND in state 71 resolved as shift
+WARNING: shift/reduce conflict for OR in state 71 resolved as shift
 WARNING: shift/reduce conflict for AND in state 72 resolved as shift
 WARNING: shift/reduce conflict for OR in state 72 resolved as shift
-WARNING: shift/reduce conflict for AND in state 73 resolved as shift
-WARNING: shift/reduce conflict for OR in state 73 resolved as shift

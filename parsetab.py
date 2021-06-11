@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND AS ASC BY COMA COMILLA COUNT DESC DIFERENTE DISTINCT FROM GROUP HAVING ID IGUAL IN INNER JOIN LEFT L_CORCH L_PARENT MAX MAYOR MAYOR_IGUAL MENOR MENOR_IGUAL MIN NOT NUMBER ON OR ORDER PUNTO R_CORCH R_PARENT SELECT WHERECONSULTA : SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_SELECT_ : SELECT CAMPO\n        | SELECT DISTINCT CAMPO CAMPO : COL COMA CAMPO\n        | COL COL : ID PUNTO ID \n\t    | ID PUNTO ID AS COMILLA ID COMILLA\n\t    | FUNCION AS COMILLA ID COMILLA FUNCION : COUNT L_PARENT ID PUNTO ID R_PARENT\n\t    | COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT\n\t    | MIN L_PARENT ID PUNTO ID R_PARENT\n\t    | MAX L_PARENT ID PUNTO ID R_PARENT  FROM_ : FROM TABLA TABLA : TAB\n\t    | TAB COMA TABLA  TAB : ID \n\t    | ID AS ID JOIN_ : INNER JOIN J \n\t    | LEFT JOIN J\n\t    | J : TAB ON W WHERE_ : WHERE W \n\t    |  W : ID PUNTO ID SIM ID PUNTO ID\n\t    | ID PUNTO ID SIM VALOR \n\t    | ID PUNTO ID SUB \n\t    | W AND W \n\t    | W OR W  SIM : IGUAL\n\t    | MAYOR_IGUAL\n\t    | MENOR_IGUAL\n\t    | MAYOR\n\t    | MENOR\n\t    | DIFERENTE  SUB : IN L_PARENT CONSULTA R_PARENT\n\t    | NOT IN L_PARENT CONSULTA R_PARENT  VALOR : COMILLA ID COMILLA \n\t    | NUMBER GROUP_ : GROUP BY CAMPO_G HAV\n\t    |  CAMPO_G : ID PUNTO ID \n\t    | ID PUNTO ID COMA CAMPO_G  HAV : HAVING FUNCION SIM VALOR\n\t    |  ORDER_ : ORDER BY CAMPO_O\n\t    |  CAMPO_O : ID PUNTO ID TIPO_O\n\t    | ID PUNTO ID TIPO_O COMA CAMPO_O  TIPO_O : ASC \n\t    | DESC '
+_lr_signature = 'AND AS ASC BY COMA COMILLA COUNT DESC DIFERENTE DISTINCT FROM GROUP HAVING ID IGUAL IN INNER JOIN LEFT L_CORCH L_PARENT MAX MAYOR MAYOR_IGUAL MENOR MENOR_IGUAL MIN NOT NUMBER ON OR ORDER PUNTO R_CORCH R_PARENT SELECT WHEREconsulta : select from join where group order\n    select : SELECT campo\n        | SELECT DISTINCT campo\n    campo : col COMA campo\n        | col\n\n\n\n\n    funcion : COUNT L_PARENT ID PUNTO ID R_PARENT\n\t    | COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT\n\t    | MIN L_PARENT ID PUNTO ID R_PARENT\n\t    | MAX L_PARENT ID PUNTO ID R_PARENT\n    from : FROM tabla\n    tabla : tab\n\t    | tab COMA tabla\n    tab : ID\n        | ID ID\n\t    | ID AS ID\n    join : INNER JOIN j\n\t    | LEFT JOIN j\n\t    | \n    j : tab ON w\n    where : WHERE w \n\t    | \n    w : ID PUNTO ID sim ID PUNTO ID\n\t    | ID PUNTO ID sim valor \n\t    | ID PUNTO ID sub \n\t    | w AND w \n\t    | w OR w\n    sim : IGUAL\n\t    | MAYOR_IGUAL\n\t    | MENOR_IGUAL\n\t    | MAYOR\n\t    | MENOR\n\t    | DIFERENTE\n    sub : IN L_PARENT consulta R_PARENT\n\t    | NOT IN L_PARENT consulta R_PARENT\n    valor : COMILLA ID COMILLA \n\t    | NUMBER\n    group : GROUP BY campo_g hav\n\t    | \n    campo_g : ID PUNTO ID \n\t    | ID PUNTO ID COMA campo_g\n    hav : HAVING funcion sim valor\n\t    | \n    order : ORDER BY campo_o\n\t    | \n    campo_o : ID PUNTO ID tipo_o\n\t    | ID PUNTO ID tipo_o COMA campo_o\n    tipo_o : ASC \n\t    | DESCcol : ID PUNTO ID AS ID\n\t    | ID PUNTO ID\n\t    | funcion AS ID'
     
-_lr_action_items = {'SELECT':([0,105,113,],[3,3,3,]),'$end':([1,4,14,17,18,19,28,41,43,45,47,48,49,56,70,72,73,75,81,83,87,100,102,104,114,115,116,117,118,119,120,121,124,125,],[0,-20,-23,-13,-14,-16,-40,-46,-22,-18,-19,-15,-17,-1,-44,-27,-28,-21,-45,-39,-26,-41,-25,-38,-47,-49,-50,-43,-42,-24,-37,-35,-36,-48,]),'FROM':([2,6,8,20,34,35,64,96,],[5,-2,-5,-3,-4,-6,-8,-7,]),'DISTINCT':([3,11,],[7,25,]),'ID':([3,5,7,21,22,24,26,27,29,30,31,32,33,36,38,52,54,55,58,59,60,61,62,63,66,69,85,86,88,89,90,91,92,93,98,103,109,110,123,],[9,19,9,9,35,37,39,40,44,19,19,19,49,51,53,65,67,68,71,44,44,74,44,76,78,82,100,101,-29,-30,-31,-32,-33,-34,107,111,71,119,82,]),'COUNT':([3,7,21,84,],[11,11,11,11,]),'MIN':([3,7,21,84,],[12,12,12,12,]),'MAX':([3,7,21,84,],[13,13,13,13,]),'INNER':([4,17,18,19,48,49,],[15,-13,-14,-16,-15,-17,]),'LEFT':([4,17,18,19,48,49,],[16,-13,-14,-16,-15,-17,]),'WHERE':([4,14,17,18,19,45,47,48,49,72,73,75,87,102,104,119,120,121,124,],[-20,29,-13,-14,-16,-18,-19,-15,-17,-27,-28,-21,-26,-25,-38,-24,-37,-35,-36,]),'GROUP':([4,14,17,18,19,28,43,45,47,48,49,72,73,75,87,102,104,119,120,121,124,],[-20,-23,-13,-14,-16,42,-22,-18,-19,-15,-17,-27,-28,-21,-26,-25,-38,-24,-37,-35,-36,]),'ORDER':([4,14,17,18,19,28,41,43,45,47,48,49,70,72,73,75,83,87,100,102,104,117,118,119,120,121,124,],[-20,-23,-13,-14,-16,-40,57,-22,-18,-19,-15,-17,-44,-27,-28,-21,-39,-26,-41,-25,-38,-43,-42,-24,-37,-35,-36,]),'R_PARENT':([4,14,17,18,19,28,41,43,45,47,48,49,56,65,67,68,70,72,73,75,78,81,83,87,100,102,104,112,114,115,116,117,118,119,120,121,122,124,125,],[-20,-23,-13,-14,-16,-40,-46,-22,-18,-19,-15,-17,-1,77,79,80,-44,-27,-28,-21,97,-45,-39,-26,-41,-25,-38,121,-47,-49,-50,-43,-42,-24,-37,-35,124,-36,-48,]),'COMA':([8,18,19,35,49,64,96,100,114,115,116,],[21,32,-16,-6,-17,-8,-7,109,123,-49,-50,]),'PUNTO':([9,37,39,40,44,53,71,82,101,],[22,52,54,55,61,66,85,98,110,]),'AS':([10,19,35,77,79,80,97,],[23,33,50,-9,-11,-12,-10,]),'L_PARENT':([11,12,13,25,94,106,],[24,26,27,38,105,113,]),'JOIN':([15,16,],[30,31,]),'ON':([19,46,49,],[-16,62,-17,]),'COMILLA':([23,50,51,76,86,88,89,90,91,92,93,108,111,],[36,63,64,96,103,-29,-30,-31,-32,-33,-34,103,120,]),'BY':([42,57,],[58,69,]),'AND':([43,72,73,75,87,102,104,119,120,121,124,],[59,59,59,59,-26,-25,-38,-24,-37,-35,-36,]),'OR':([43,72,73,75,87,102,104,119,120,121,124,],[60,60,60,60,-26,-25,-38,-24,-37,-35,-36,]),'HAVING':([70,100,118,],[84,-41,-42,]),'IGUAL':([74,77,79,80,97,99,],[88,-9,-11,-12,-10,88,]),'MAYOR_IGUAL':([74,77,79,80,97,99,],[89,-9,-11,-12,-10,89,]),'MENOR_IGUAL':([74,77,79,80,97,99,],[90,-9,-11,-12,-10,90,]),'MAYOR':([74,77,79,80,97,99,],[91,-9,-11,-12,-10,91,]),'MENOR':([74,77,79,80,97,99,],[92,-9,-11,-12,-10,92,]),'DIFERENTE':([74,77,79,80,97,99,],[93,-9,-11,-12,-10,93,]),'IN':([74,95,],[94,106,]),'NOT':([74,],[95,]),'NUMBER':([86,88,89,90,91,92,93,108,],[104,-29,-30,-31,-32,-33,-34,104,]),'ASC':([107,],[115,]),'DESC':([107,],[116,]),}
+_lr_action_items = {'SELECT':([0,102,110,],[3,3,3,]),'$end':([1,4,14,17,18,19,28,33,42,44,46,48,49,50,56,69,71,72,74,79,81,85,97,99,101,111,112,113,114,115,116,117,118,121,122,],[0,-18,-21,-10,-11,-13,-38,-14,-44,-20,-16,-17,-12,-15,-1,-42,-25,-26,-19,-43,-37,-24,-39,-23,-36,-45,-47,-48,-41,-40,-22,-35,-33,-34,-46,]),'FROM':([2,6,8,20,35,36,37,63,],[5,-2,-5,-3,-4,-50,-51,-49,]),'DISTINCT':([3,11,],[7,25,]),'ID':([3,5,7,19,21,22,23,24,26,27,29,30,31,32,34,39,51,52,54,55,58,59,60,61,62,65,68,83,84,86,87,88,89,90,91,95,100,106,107,120,],[9,19,9,33,9,36,37,38,40,41,45,19,19,19,50,53,63,64,66,67,70,45,45,73,45,76,80,97,98,-27,-28,-29,-30,-31,-32,104,108,70,116,80,]),'COUNT':([3,7,21,82,],[11,11,11,11,]),'MIN':([3,7,21,82,],[12,12,12,12,]),'MAX':([3,7,21,82,],[13,13,13,13,]),'INNER':([4,17,18,19,33,49,50,],[15,-10,-11,-13,-14,-12,-15,]),'LEFT':([4,17,18,19,33,49,50,],[16,-10,-11,-13,-14,-12,-15,]),'WHERE':([4,14,17,18,19,33,46,48,49,50,71,72,74,85,99,101,116,117,118,121,],[-18,29,-10,-11,-13,-14,-16,-17,-12,-15,-25,-26,-19,-24,-23,-36,-22,-35,-33,-34,]),'GROUP':([4,14,17,18,19,28,33,44,46,48,49,50,71,72,74,85,99,101,116,117,118,121,],[-18,-21,-10,-11,-13,43,-14,-20,-16,-17,-12,-15,-25,-26,-19,-24,-23,-36,-22,-35,-33,-34,]),'ORDER':([4,14,17,18,19,28,33,42,44,46,48,49,50,69,71,72,74,81,85,97,99,101,114,115,116,117,118,121,],[-18,-21,-10,-11,-13,-38,-14,57,-20,-16,-17,-12,-15,-42,-25,-26,-19,-37,-24,-39,-23,-36,-41,-40,-22,-35,-33,-34,]),'R_PARENT':([4,14,17,18,19,28,33,42,44,46,48,49,50,56,64,66,67,69,71,72,74,76,79,81,85,97,99,101,109,111,112,113,114,115,116,117,118,119,121,122,],[-18,-21,-10,-11,-13,-38,-14,-44,-20,-16,-17,-12,-15,-1,75,77,78,-42,-25,-26,-19,94,-43,-37,-24,-39,-23,-36,118,-45,-47,-48,-41,-40,-22,-35,-33,121,-34,-46,]),'COMA':([8,18,19,33,36,37,50,63,97,111,112,113,],[21,32,-13,-14,-50,-51,-15,-49,106,120,-47,-48,]),'PUNTO':([9,38,40,41,45,53,70,80,98,],[22,52,54,55,61,65,83,95,107,]),'AS':([10,19,36,75,77,78,94,],[23,34,51,-6,-8,-9,-7,]),'L_PARENT':([11,12,13,25,92,103,],[24,26,27,39,102,110,]),'JOIN':([15,16,],[30,31,]),'ON':([19,33,47,50,],[-13,-14,62,-15,]),'BY':([43,57,],[58,68,]),'AND':([44,71,72,74,85,99,101,116,117,118,121,],[59,59,59,59,-24,-23,-36,-22,-35,-33,-34,]),'OR':([44,71,72,74,85,99,101,116,117,118,121,],[60,60,60,60,-24,-23,-36,-22,-35,-33,-34,]),'HAVING':([69,97,115,],[82,-39,-40,]),'IGUAL':([73,75,77,78,94,96,],[86,-6,-8,-9,-7,86,]),'MAYOR_IGUAL':([73,75,77,78,94,96,],[87,-6,-8,-9,-7,87,]),'MENOR_IGUAL':([73,75,77,78,94,96,],[88,-6,-8,-9,-7,88,]),'MAYOR':([73,75,77,78,94,96,],[89,-6,-8,-9,-7,89,]),'MENOR':([73,75,77,78,94,96,],[90,-6,-8,-9,-7,90,]),'DIFERENTE':([73,75,77,78,94,96,],[91,-6,-8,-9,-7,91,]),'IN':([73,93,],[92,103,]),'NOT':([73,],[93,]),'COMILLA':([84,86,87,88,89,90,91,105,108,],[100,-27,-28,-29,-30,-31,-32,100,117,]),'NUMBER':([84,86,87,88,89,90,91,105,],[101,-27,-28,-29,-30,-31,-32,101,]),'ASC':([104,],[112,]),'DESC':([104,],[113,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'CONSULTA':([0,105,113,],[1,112,122,]),'SELECT_':([0,105,113,],[2,2,2,]),'FROM_':([2,],[4,]),'CAMPO':([3,7,21,],[6,20,34,]),'COL':([3,7,21,],[8,8,8,]),'FUNCION':([3,7,21,84,],[10,10,10,99,]),'JOIN_':([4,],[14,]),'TABLA':([5,32,],[17,48,]),'TAB':([5,30,31,32,],[18,46,46,18,]),'WHERE_':([14,],[28,]),'GROUP_':([28,],[41,]),'W':([29,59,60,62,],[43,72,73,75,]),'J':([30,31,],[45,47,]),'ORDER_':([41,],[56,]),'CAMPO_G':([58,109,],[70,118,]),'CAMPO_O':([69,123,],[81,125,]),'HAV':([70,],[83,]),'SIM':([74,99,],[86,108,]),'SUB':([74,],[87,]),'VALOR':([86,108,],[102,117,]),'TIPO_O':([107,],[114,]),}
+_lr_goto_items = {'consulta':([0,102,110,],[1,109,119,]),'select':([0,102,110,],[2,2,2,]),'from':([2,],[4,]),'campo':([3,7,21,],[6,20,35,]),'col':([3,7,21,],[8,8,8,]),'funcion':([3,7,21,82,],[10,10,10,96,]),'join':([4,],[14,]),'tabla':([5,32,],[17,49,]),'tab':([5,30,31,32,],[18,47,47,18,]),'where':([14,],[28,]),'group':([28,],[42,]),'w':([29,59,60,62,],[44,71,72,74,]),'j':([30,31,],[46,48,]),'order':([42,],[56,]),'campo_g':([58,106,],[69,115,]),'campo_o':([68,120,],[79,122,]),'hav':([69,],[81,]),'sim':([73,96,],[84,105,]),'sub':([73,],[85,]),'valor':([84,105,],[99,114,]),'tipo_o':([104,],[111,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,55 +26,56 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> CONSULTA","S'",1,None,None,None),
-  ('CONSULTA -> SELECT_ FROM_ JOIN_ WHERE_ GROUP_ ORDER_','CONSULTA',6,'p_Consulta','grupo06.py',94),
-  ('SELECT_ -> SELECT CAMPO','SELECT_',2,'p_SELECT_','grupo06.py',97),
-  ('SELECT_ -> SELECT DISTINCT CAMPO','SELECT_',3,'p_SELECT_','grupo06.py',98),
-  ('CAMPO -> COL COMA CAMPO','CAMPO',3,'p_CAMPO','grupo06.py',101),
-  ('CAMPO -> COL','CAMPO',1,'p_CAMPO','grupo06.py',102),
-  ('COL -> ID PUNTO ID','COL',3,'p_COL','grupo06.py',105),
-  ('COL -> ID PUNTO ID AS COMILLA ID COMILLA','COL',7,'p_COL','grupo06.py',106),
-  ('COL -> FUNCION AS COMILLA ID COMILLA','COL',5,'p_COL','grupo06.py',107),
-  ('FUNCION -> COUNT L_PARENT ID PUNTO ID R_PARENT','FUNCION',6,'p_FUNCION','grupo06.py',119),
-  ('FUNCION -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT','FUNCION',7,'p_FUNCION','grupo06.py',120),
-  ('FUNCION -> MIN L_PARENT ID PUNTO ID R_PARENT','FUNCION',6,'p_FUNCION','grupo06.py',121),
-  ('FUNCION -> MAX L_PARENT ID PUNTO ID R_PARENT','FUNCION',6,'p_FUNCION','grupo06.py',122),
-  ('FROM_ -> FROM TABLA','FROM_',2,'p_FROM_','grupo06.py',145),
-  ('TABLA -> TAB','TABLA',1,'p_TABLA','grupo06.py',148),
-  ('TABLA -> TAB COMA TABLA','TABLA',3,'p_TABLA','grupo06.py',149),
-  ('TAB -> ID','TAB',1,'p_TAB','grupo06.py',152),
-  ('TAB -> ID AS ID','TAB',3,'p_TAB','grupo06.py',153),
-  ('JOIN_ -> INNER JOIN J','JOIN_',3,'p_JOIN_','grupo06.py',161),
-  ('JOIN_ -> LEFT JOIN J','JOIN_',3,'p_JOIN_','grupo06.py',162),
-  ('JOIN_ -> <empty>','JOIN_',0,'p_JOIN_','grupo06.py',163),
-  ('J -> TAB ON W','J',3,'p_J','grupo06.py',167),
-  ('WHERE_ -> WHERE W','WHERE_',2,'p_WHERE_','grupo06.py',171),
-  ('WHERE_ -> <empty>','WHERE_',0,'p_WHERE_','grupo06.py',172),
-  ('W -> ID PUNTO ID SIM ID PUNTO ID','W',7,'p_W','grupo06.py',176),
-  ('W -> ID PUNTO ID SIM VALOR','W',5,'p_W','grupo06.py',177),
-  ('W -> ID PUNTO ID SUB','W',4,'p_W','grupo06.py',178),
-  ('W -> W AND W','W',3,'p_W','grupo06.py',179),
-  ('W -> W OR W','W',3,'p_W','grupo06.py',180),
-  ('SIM -> IGUAL','SIM',1,'p_SIM','grupo06.py',207),
-  ('SIM -> MAYOR_IGUAL','SIM',1,'p_SIM','grupo06.py',208),
-  ('SIM -> MENOR_IGUAL','SIM',1,'p_SIM','grupo06.py',209),
-  ('SIM -> MAYOR','SIM',1,'p_SIM','grupo06.py',210),
-  ('SIM -> MENOR','SIM',1,'p_SIM','grupo06.py',211),
-  ('SIM -> DIFERENTE','SIM',1,'p_SIM','grupo06.py',212),
-  ('SUB -> IN L_PARENT CONSULTA R_PARENT','SUB',4,'p_SUB','grupo06.py',215),
-  ('SUB -> NOT IN L_PARENT CONSULTA R_PARENT','SUB',5,'p_SUB','grupo06.py',216),
-  ('VALOR -> COMILLA ID COMILLA','VALOR',3,'p_VALOR','grupo06.py',219),
-  ('VALOR -> NUMBER','VALOR',1,'p_VALOR','grupo06.py',220),
-  ('GROUP_ -> GROUP BY CAMPO_G HAV','GROUP_',4,'p_GROUP_','grupo06.py',223),
-  ('GROUP_ -> <empty>','GROUP_',0,'p_GROUP_','grupo06.py',224),
-  ('CAMPO_G -> ID PUNTO ID','CAMPO_G',3,'p_CAMPO_G','grupo06.py',227),
-  ('CAMPO_G -> ID PUNTO ID COMA CAMPO_G','CAMPO_G',5,'p_CAMPO_G','grupo06.py',228),
-  ('HAV -> HAVING FUNCION SIM VALOR','HAV',4,'p_HAV','grupo06.py',238),
-  ('HAV -> <empty>','HAV',0,'p_HAV','grupo06.py',239),
-  ('ORDER_ -> ORDER BY CAMPO_O','ORDER_',3,'p_ORDER_','grupo06.py',242),
-  ('ORDER_ -> <empty>','ORDER_',0,'p_ORDER_','grupo06.py',243),
-  ('CAMPO_O -> ID PUNTO ID TIPO_O','CAMPO_O',4,'p_CAMPO_O','grupo06.py',246),
-  ('CAMPO_O -> ID PUNTO ID TIPO_O COMA CAMPO_O','CAMPO_O',6,'p_CAMPO_O','grupo06.py',247),
-  ('TIPO_O -> ASC','TIPO_O',1,'p_TIPO_O','grupo06.py',257),
-  ('TIPO_O -> DESC','TIPO_O',1,'p_TIPO_O','grupo06.py',258),
+  ("S' -> consulta","S'",1,None,None,None),
+  ('consulta -> select from join where group order','consulta',6,'p_Consulta','grupo06.py',94),
+  ('select -> SELECT campo','select',2,'p_Consulta','grupo06.py',95),
+  ('select -> SELECT DISTINCT campo','select',3,'p_Consulta','grupo06.py',96),
+  ('campo -> col COMA campo','campo',3,'p_Consulta','grupo06.py',97),
+  ('campo -> col','campo',1,'p_Consulta','grupo06.py',98),
+  ('funcion -> COUNT L_PARENT ID PUNTO ID R_PARENT','funcion',6,'p_Consulta','grupo06.py',103),
+  ('funcion -> COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT','funcion',7,'p_Consulta','grupo06.py',104),
+  ('funcion -> MIN L_PARENT ID PUNTO ID R_PARENT','funcion',6,'p_Consulta','grupo06.py',105),
+  ('funcion -> MAX L_PARENT ID PUNTO ID R_PARENT','funcion',6,'p_Consulta','grupo06.py',106),
+  ('from -> FROM tabla','from',2,'p_Consulta','grupo06.py',107),
+  ('tabla -> tab','tabla',1,'p_Consulta','grupo06.py',108),
+  ('tabla -> tab COMA tabla','tabla',3,'p_Consulta','grupo06.py',109),
+  ('tab -> ID','tab',1,'p_Consulta','grupo06.py',110),
+  ('tab -> ID ID','tab',2,'p_Consulta','grupo06.py',111),
+  ('tab -> ID AS ID','tab',3,'p_Consulta','grupo06.py',112),
+  ('join -> INNER JOIN j','join',3,'p_Consulta','grupo06.py',113),
+  ('join -> LEFT JOIN j','join',3,'p_Consulta','grupo06.py',114),
+  ('join -> <empty>','join',0,'p_Consulta','grupo06.py',115),
+  ('j -> tab ON w','j',3,'p_Consulta','grupo06.py',116),
+  ('where -> WHERE w','where',2,'p_Consulta','grupo06.py',117),
+  ('where -> <empty>','where',0,'p_Consulta','grupo06.py',118),
+  ('w -> ID PUNTO ID sim ID PUNTO ID','w',7,'p_Consulta','grupo06.py',119),
+  ('w -> ID PUNTO ID sim valor','w',5,'p_Consulta','grupo06.py',120),
+  ('w -> ID PUNTO ID sub','w',4,'p_Consulta','grupo06.py',121),
+  ('w -> w AND w','w',3,'p_Consulta','grupo06.py',122),
+  ('w -> w OR w','w',3,'p_Consulta','grupo06.py',123),
+  ('sim -> IGUAL','sim',1,'p_Consulta','grupo06.py',124),
+  ('sim -> MAYOR_IGUAL','sim',1,'p_Consulta','grupo06.py',125),
+  ('sim -> MENOR_IGUAL','sim',1,'p_Consulta','grupo06.py',126),
+  ('sim -> MAYOR','sim',1,'p_Consulta','grupo06.py',127),
+  ('sim -> MENOR','sim',1,'p_Consulta','grupo06.py',128),
+  ('sim -> DIFERENTE','sim',1,'p_Consulta','grupo06.py',129),
+  ('sub -> IN L_PARENT consulta R_PARENT','sub',4,'p_Consulta','grupo06.py',130),
+  ('sub -> NOT IN L_PARENT consulta R_PARENT','sub',5,'p_Consulta','grupo06.py',131),
+  ('valor -> COMILLA ID COMILLA','valor',3,'p_Consulta','grupo06.py',132),
+  ('valor -> NUMBER','valor',1,'p_Consulta','grupo06.py',133),
+  ('group -> GROUP BY campo_g hav','group',4,'p_Consulta','grupo06.py',134),
+  ('group -> <empty>','group',0,'p_Consulta','grupo06.py',135),
+  ('campo_g -> ID PUNTO ID','campo_g',3,'p_Consulta','grupo06.py',136),
+  ('campo_g -> ID PUNTO ID COMA campo_g','campo_g',5,'p_Consulta','grupo06.py',137),
+  ('hav -> HAVING funcion sim valor','hav',4,'p_Consulta','grupo06.py',138),
+  ('hav -> <empty>','hav',0,'p_Consulta','grupo06.py',139),
+  ('order -> ORDER BY campo_o','order',3,'p_Consulta','grupo06.py',140),
+  ('order -> <empty>','order',0,'p_Consulta','grupo06.py',141),
+  ('campo_o -> ID PUNTO ID tipo_o','campo_o',4,'p_Consulta','grupo06.py',142),
+  ('campo_o -> ID PUNTO ID tipo_o COMA campo_o','campo_o',6,'p_Consulta','grupo06.py',143),
+  ('tipo_o -> ASC','tipo_o',1,'p_Consulta','grupo06.py',144),
+  ('tipo_o -> DESC','tipo_o',1,'p_Consulta','grupo06.py',145),
+  ('col -> ID PUNTO ID AS ID','col',5,'p_col','grupo06.py',148),
+  ('col -> ID PUNTO ID','col',3,'p_col','grupo06.py',149),
+  ('col -> funcion AS ID','col',3,'p_col','grupo06.py',150),
 ]
