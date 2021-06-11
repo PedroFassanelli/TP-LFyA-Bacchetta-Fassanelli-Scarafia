@@ -73,17 +73,18 @@ t_ignore = ' \t'
 # Construye el lexer
 lexer = lex.lex ()
 
-#s = '''SELECT c.first_name,
-#               c.last_name
-#        FROM customers AS c'''
-#lexer.input(s)
-
 #Prueba. Devuelve el tipo de token y el valor
-#while True:
-#    tok = lexer.token()
-#    if not tok:
-#        break
-#    print(tok)
+'''
+s = 'SELECT c.first_name,
+               c.last_name
+        FROM customers AS c'
+lexer.input(s)
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
+    print(tok)
+'''
 
 # Diccionarios para almacenar datos
 tablas = {}
@@ -101,49 +102,41 @@ def p_campo(p):
     '''campo : col COMA campo
         | col'''
 
-def p_col(p): #Diccionario
+def p_col(p): #Diccionario columnas
     '''col : ID PUNTO ID AS ID
 	    | ID PUNTO ID
 	    | funcion AS ID'''
-    
-    """
-    indice = p[1]
-    if indice in columnas:
-        if len(p) == 4 or len(p) == 7:
-            aux = p[3]
-            if aux not in columnas[indice]:
-                columnas[indice].append(aux)
-    elif len(p) == 4 or len(p) == 7:
-        columnas[indice] = [p[3]]
-    """
+    if len(p) == 4 or len(p) == 6:
+        if p[1] in columnas:
+            if p[3] not in columnas[p[1]]:
+                columnas[p[1]].append (p[3]) #Guardamos las columnas de cada clave (tabla)
+        else:
+            columnas[p[1]] = [p[3]] #Agregamos la tabla o el alias como clave
 
-def p_funcion(p): #Diccionario
+def p_funcion(p): #Diccionario columnas
     '''funcion : COUNT L_PARENT ID PUNTO ID R_PARENT
 	    | COUNT DISTINCT L_PARENT ID PUNTO ID R_PARENT
 	    | MIN L_PARENT ID PUNTO ID R_PARENT
 	    | MAX L_PARENT ID PUNTO ID R_PARENT'''
 
-    """
-    indice = ''
     if len(p) == 7:
         indice = p[3]
     else:
         indice = p[4]
     if indice in columnas:
+        #Guardamos columnas de la clave
         if len(p) == 7:
-            aux = p[5]
-            if aux not in columnas[indice]:
-                columnas[indice].append(aux)
-        elif len(p) == 8:
-            aux = p[6]
-            if aux not in columnas[indice]:
-                columnas[indice].append(aux)
+            if p[5] not in columnas[indice]:
+                columnas[indice].append(p[5])
+        else:
+            if p[6] not in columnas[indice]:
+                columnas[indice].append(p[6])
     else:
+        #Agregamos la tabla o alias como clave
         if len(p) == 7:
             columnas[indice] = [p[5]]
-        elif len(p) == 8:
+        else:
             columnas[indice] = [p[6]]
-    """
 
 def p_from(p):    
     '''from : FROM tabla'''
@@ -152,19 +145,16 @@ def p_tabla(p):
     '''tabla : tab
 	    | tab COMA tabla'''
 
-def p_tab(p): #Diccionario
+def p_tab(p): #Diccionario tablas
     '''tab : ID
         | ID ID
 	    | ID AS ID'''
-
-    """
-        if len(p) == 2:
-        tablas.setdefault(p[1])
-    elif len(p) == 4:
-        tablas[p[1]] = [p[3]]
+    if len(p) == 2:
+        tablas.setdefault(p[1]) # Agrega el nombre de la tabla como clave al diccionario 
+    elif len(p) == 3:
+        tablas[p[1]] = p[2] # Guarda el alias de la tabla
     else:
-        tablas[p[1]] = [p[2]]  
-    """
+        tablas[p[1]] = p[3]
 
 def p_join(p):
     '''join : INNER JOIN j
@@ -178,38 +168,29 @@ def p_where(p):
     '''where : WHERE w 
 	    | '''
 
-def p_w(p): #Diccionario
+def p_w(p): #Diccionario columnas
     '''w : ID PUNTO ID sim ID PUNTO ID
 	    | ID PUNTO ID sim valor 
 	    | ID PUNTO ID sub 
 	    | w AND w 
 	    | w OR w'''
-
-    """
-     if len (p) == 8:
-        indice1 = p[1]
-        indice2 = p[5]
-        if indice1 in columnas:
-            aux = p[3]
-            if aux not in columnas[indice1]:
-                columnas[indice1].append(aux)
+    if len(p) == 6 or len(p) == 5:
+        if p[1] in columnas:
+            if p[3] not in columnas[p[1]]:
+                columnas[p[1]].append(p[3]) #Guardamos columnas de la clave
         else:
-            columnas[indice1] = p[3]
-        if indice2 in columnas:
-            aux = p[3]
-            if aux not in columnas[indice2]:
-                columnas[indice2].append(aux)
+            columnas[p[1]] = [p[3]] #Agregamos la tabla o alias como clave
+    elif len(p) == 8:
+        if p[1] in columnas:
+            if p[3] not in columnas[p[1]]:
+                columnas[p[1]].append(p[3]) #Guardamos columnas de la clave
         else:
-            columnas[indice2] = [p[3]]
-    elif len(p) == 6 or len(p) == 5:
-        indice = p[1]
-        if indice in columnas:
-            aux = p[3]
-            if aux not in columnas[indice]:
-                columnas[indice].append(aux)
+            columnas[p[1]] = [p[3]] #Agregamos la tabla o alias como clave
+        if p[5] in columnas:
+            if p[7] not in columnas[p[5]]:
+                columnas[p[5]].append(p[7]) #Guardamos columnas de la clave
         else:
-            columnas[indice] = [p[3]]
-    """
+            columnas[p[5]] = [p[7]] #Agregamos la tabla o alias como clave
 
 def p_sim(p):
     '''sim : IGUAL
@@ -231,19 +212,14 @@ def p_group(p):
     '''group : GROUP BY campo_g hav
 	    | '''
 
-def p_campo_g(p): #Diccionario
+def p_campo_g(p): #Diccionario columnas
     '''campo_g : ID PUNTO ID 
 	    | ID PUNTO ID COMA campo_g'''
-
-    """
-    indice = p[1]
-    if indice in columnas:
-        aux = p[3]
-        if aux not in columnas[indice]:
-            columnas[indice].append(aux)
+    if p[1] in columnas:
+        if p[3] not in columnas[p[1]]:
+            columnas[p[1]].append(p[3]) #Guardamos columnas de la clave
     else:
-        columnas[indice] = [p[3]]
-    """
+        columnas[p[1]] = [p[3]] #Agregamos la tabla o alias como clave
 
 def p_hav(p):
     '''hav : HAVING funcion sim valor
@@ -253,19 +229,14 @@ def p_order(p):
     '''order : ORDER BY campo_o
 	    | '''
 
-def p_campo_o(p): #Diccionario
+def p_campo_o(p): #Diccionario columnas
     '''campo_o : ID PUNTO ID tipo_o
 	    | ID PUNTO ID tipo_o COMA campo_o'''
-    
-    """
-    indice = p[1]
-    if indice in columnas:
-        aux = p[3]
-        if aux not in columnas[indice]:
-            columnas[indice].append(aux)
+    if p[1] in columnas:
+        if p[3] not in columnas[p[1]]:
+            columnas[p[1]].append(p[3]) #Guardamos columnas de la clave
     else:
-        columnas[indice] = [p[3]]
-    """
+        columnas[p[1]] = [p[3]] #Agregamos la tabla o alias como clave
 
 def p_tipo_o(p):
     '''tipo_o : ASC 
@@ -279,37 +250,47 @@ def p_error(p):
 
 import ply.yacc as yacc
 
+#Analizador de prueba
+'''
 parser = yacc.yacc()
- 
+
 while True:
     try:
         s = input('analizador >')
+        columnas.clear()
+        tablas.clear()
     except EOFError:
         break
     if not s: continue
     yacc.parse(s)
+    items1 = columnas.items()
+    items2 = tablas.items()
+    for x in items1:
+        print(x)
+    for y in items2:
+        print(y)
+'''
 
+def parse_select_statement(s):
+    #Vaciar valores de los diccionarios
+    columnas.clear()
+    tablas.clear()
+    contador= 0
+    yacc.yacc()
+    yacc.parse(s)
    
-#def parse_select_statement(s):
-#    #Vaciar valores de los diccionarios
-#    columnas.clear()
-#    tablas.clear()
-#    contador= 0
-#    yacc.yacc()
-#    yacc.parse(s)
-   
-#    resultado = {}
+    resultado = {}
 
-#   for indice_tablas in tablas:
-#        control=''
-#        if tablas.get(indice_tablas)!=None:
-#            control=tablas.get(indice_tablas)
-#        else:
-#            control=indice_tablas
-#        for indice_columnas in columnas:
-#            if control==indice_columnas:
-#                resultado[indice_tablas]=sorted(columnas.get(indice_columnas))
-#                contador+=1
-#    if len(columnas.keys())>contador:
-#        raise Exception('Error de cadena inválida.')
-#    return resultado
+    for indice_tablas in tablas:
+        control = ''
+        if tablas.get(indice_tablas) != None:
+            control = tablas.get(indice_tablas)
+        else:
+            control = indice_tablas
+        for indice_columnas in columnas:
+            if control == indice_columnas:
+                resultado[indice_tablas] = sorted(columnas.get(indice_columnas))
+                contador += 1
+    if len(columnas.keys()) > contador:
+        raise Exception('Error de cadena inválida.')
+    return resultado
